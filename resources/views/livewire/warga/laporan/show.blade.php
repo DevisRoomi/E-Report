@@ -67,26 +67,44 @@
             </div>
         </article>
         <aside class="space-y-5">
-            {{-- Tahapan penanganan --}}
+            {{-- Tahapan alur progres bergaris (stepper) --}}
             <section class="rounded-2xl border border-slate-200 bg-white p-6">
-                <h2 class="font-display font-bold">Progres Pengaduan</h2>
-                <div class="mt-6 space-y-6">
+                <h2 class="font-display font-bold text-slate-900">Progres Pengaduan</h2>
+                <div class="relative mt-6 space-y-6 before:absolute before:left-[17px] before:top-3 before:bottom-3 before:w-0.5 before:bg-slate-200">
                     @foreach(['pending' => ['clock-3', 'Menunggu Peninjauan'], 'proses' => ['loader-circle', 'Sedang Diproses'], 'selesai' => ['circle-check', 'Selesai Ditangani']] as $status => [$icon, $label])
-                        @php $reached = array_search($laporan->status, ['pending','proses','selesai']) >= $loop->index; @endphp
-                        <div class="flex items-center gap-3">
-                            <span @class(['flex h-9 w-9 shrink-0 items-center justify-center rounded-full', 'bg-blue-50 text-blue-600' => $reached, 'bg-slate-50 text-slate-300' => !$reached])>
-                                <i data-lucide="{{ $icon }}" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+                        @php
+                            $order = ['pending', 'proses', 'selesai'];
+                            $currentIdx = array_search($laporan->status, $order);
+                            $stepIdx = array_search($status, $order);
+                            $isCurrent = $laporan->status === $status;
+                            $isDone = $currentIdx > $stepIdx;
+                        @endphp
+                        <div class="relative flex items-center gap-3.5">
+                            <span @class([
+                                'relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full ring-4 ring-white transition-all',
+                                'bg-blue-600 text-white shadow-sm shadow-blue-200' => $isCurrent,
+                                'bg-emerald-50 text-emerald-600 ring-emerald-100' => $isDone,
+                                'bg-slate-100 text-slate-400' => !$isCurrent && !$isDone,
+                            ])>
+                                <i data-lucide="{{ $isDone ? 'check' : $icon }}" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                             </span>
-                            <p @class(['text-xs font-semibold', 'text-slate-700' => $reached, 'text-slate-400' => !$reached])>
-                                {{ $label }}
-                                @if($laporan->status === $status)
-                                    <span class="mt-1 block text-[10px] font-normal text-blue-600">Tahap saat ini</span>
+                            <div>
+                                <p @class([
+                                    'text-xs',
+                                    'font-bold text-slate-900' => $isCurrent,
+                                    'font-medium text-slate-700' => $isDone,
+                                    'text-slate-400' => !$isCurrent && !$isDone,
+                                ])>
+                                    {{ $label }}
+                                </p>
+                                @if($isCurrent)
+                                    <span class="mt-0.5 inline-block text-[10px] font-semibold text-blue-600">Tahap saat ini</span>
                                 @endif
-                            </p>
+                            </div>
                         </div>
                     @endforeach
                 </div>
-                <p class="mt-6 rounded-xl bg-slate-50 p-4 text-xs leading-6 text-slate-500">{{ $laporan->statusDescription() }}</p>
+                <p class="mt-6 rounded-xl bg-slate-50 p-4 text-xs leading-5 text-slate-500 border border-slate-100">{{ $laporan->statusDescription() }}</p>
             </section>
             @can('update', $laporan)
                 <section class="rounded-2xl border border-slate-200 bg-white p-6">
