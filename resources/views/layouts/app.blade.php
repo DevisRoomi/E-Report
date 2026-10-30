@@ -3,22 +3,24 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#2563eb">
-        <title>{{ $title ?? 'Dashboard' }} · Suara Warga, Langkah Perubahan</title>
+        <meta name="theme-color" content="#4A151C">
+        <title>{{ $title ?? 'Dashboard' }} · E-Report Layanan Sipil</title>
         <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <style type="text/tailwindcss">
             @theme {
-                --font-sans: 'DM Sans', sans-serif;
-                --font-display: 'Plus Jakarta Sans', sans-serif;
+                --font-display: 'Bebas Neue', 'Plus Jakarta Sans', sans-serif;
+                --font-serif: 'Newsreader', serif;
+                --font-sans: 'Plus Jakarta Sans', sans-serif;
+                --font-mono: 'JetBrains Mono', monospace;
             }
 
             @layer base {
                 button, a, input, textarea, select {
-                    @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600;
+                    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4A151C];
                 }
 
                 button:not(:disabled), select {
@@ -33,51 +35,53 @@
         <style>[x-cloak] { display: none !important; }</style>
         @livewireStyles
     </head>
-    <body class="bg-slate-50 font-sans text-slate-900 antialiased" x-data="{ menuOpen: false, desktop: window.innerWidth >= 1024 }" @resize.window="desktop = window.innerWidth >= 1024" @keydown.escape.window="menuOpen = false">
-        <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-white focus:p-3">Langsung ke konten</a>
-        <div x-show="menuOpen" x-cloak @click="menuOpen = false" class="fixed inset-0 z-30 bg-slate-950/40 lg:hidden"></div>
-        {{-- Sidebar: navigasi bersama untuk dashboard warga dan administrator --}}
-        <aside :inert="!menuOpen && !desktop" :class="menuOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-slate-200 bg-white transition-transform lg:translate-x-0">
-            <div class="flex h-23 shrink-0 items-center justify-between px-7">
-                <a href="{{ route('home') }}" class="inline-flex items-center gap-2.5 font-display text-xl font-extrabold tracking-tight text-slate-900">
-                    <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white">
-                        <i data-lucide="messages-square" aria-hidden="true" class="h-6 w-6 shrink-0"></i>
+    <body class="bg-[#F7F4F2] font-sans text-[#1C1819] antialiased" x-data="{ menuOpen: false, desktop: window.innerWidth >= 1024 }" @resize.window="desktop = window.innerWidth >= 1024" @keydown.escape.window="menuOpen = false">
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-[#4A151C] focus:text-white focus:p-3 focus:font-mono focus:text-xs">Langsung ke konten</a>
+        <div x-show="menuOpen" x-cloak @click="menuOpen = false" class="fixed inset-0 z-30 bg-[#1C1819]/60 backdrop-blur-xs lg:hidden"></div>
+
+        {{-- Sidebar: deep oxblood / wine aesthetic --}}
+        <aside :inert="!menuOpen && !desktop" :class="menuOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[#310A10] bg-[#3C0F15] text-[#FAF7F5] transition-transform duration-200 lg:translate-x-0">
+            <div class="flex h-20 shrink-0 items-center justify-between border-b border-[#4A151C] px-6">
+                <a href="{{ route('home') }}" class="inline-flex items-center gap-3">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-md bg-white text-[#3C0F15] shadow-xs">
+                        <i data-lucide="shield" aria-hidden="true" class="h-4 w-4 stroke-[2.5]"></i>
                     </span>
-                    <span>
-                        E-Report<span class="text-blue-600">.</span>
-                    </span>
+                    <div>
+                        <span class="font-display text-2xl tracking-wider text-white">E-REPORT</span>
+                        <span class="block font-mono text-[9px] uppercase tracking-widest text-[#E0D0D2]">Layanan Sipil</span>
+                    </div>
                 </a>
-                <button @click="menuOpen = false" class="lg:hidden" aria-label="Tutup navigasi">
+                <button @click="menuOpen = false" class="text-[#E0D0D2] hover:text-white lg:hidden" aria-label="Tutup navigasi">
                     <i data-lucide="x" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
                 </button>
             </div>
-            <div class="px-4 pt-5">
-                <p class="mb-4 px-4 text-[10px] font-bold tracking-[.18em] text-slate-400">MENU {{ auth()->user()->role === 'admin' ? 'ADMINISTRATOR' : 'WARGA' }}</p>
-                <nav aria-label="Navigasi utama" class="space-y-1.5">
-                    {{-- Menu ditampilkan sesuai peran pengguna yang sedang masuk --}}
+
+            <div class="px-3 pt-6 flex-1 overflow-y-auto">
+                <p class="mb-3 px-3 font-mono text-[10px] font-bold tracking-[.18em] uppercase text-[#B99A9F]">RUANG {{ auth()->user()->role === 'admin' ? 'ADMINISTRATOR' : 'WARGA' }}</p>
+                <nav aria-label="Navigasi utama" class="space-y-1">
                     @if(auth()->user()->role === 'admin')
                         <a
                             href="{{ route('admin.dashboard') }}"
                             aria-current="{{ request()->routeIs('admin.dashboard') ? 'page' : 'false' }}"
                             @class([
-                                'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition',
-                                'bg-blue-50 text-blue-700' => request()->routeIs('admin.dashboard'),
-                                'text-slate-500 hover:bg-slate-50 hover:text-slate-900' => ! request()->routeIs('admin.dashboard'),
+                                'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-xs font-semibold tracking-wide transition',
+                                'bg-white text-[#3C0F15] shadow-xs' => request()->routeIs('admin.dashboard'),
+                                'text-[#E0D0D2] hover:bg-[#4A151C] hover:text-white' => ! request()->routeIs('admin.dashboard'),
                             ])
                         >
-                            <i data-lucide="layout-dashboard" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
-                            Dashboard
+                            <i data-lucide="layout-dashboard" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+                            Dashboard Antrean
                         </a>
                         <a
                             href="{{ route('admin.laporan.index') }}"
                             aria-current="{{ request()->routeIs('admin.laporan.*') ? 'page' : 'false' }}"
                             @class([
-                                'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition',
-                                'bg-blue-50 text-blue-700' => request()->routeIs('admin.laporan.*'),
-                                'text-slate-500 hover:bg-slate-50 hover:text-slate-900' => ! request()->routeIs('admin.laporan.*'),
+                                'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-xs font-semibold tracking-wide transition',
+                                'bg-white text-[#3C0F15] shadow-xs' => request()->routeIs('admin.laporan.*'),
+                                'text-[#E0D0D2] hover:bg-[#4A151C] hover:text-white' => ! request()->routeIs('admin.laporan.*'),
                             ])
                         >
-                            <i data-lucide="files" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+                            <i data-lucide="folder-kanban" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                             Semua Pengaduan
                         </a>
                     @else
@@ -85,100 +89,118 @@
                             href="{{ route('warga.dashboard') }}"
                             aria-current="{{ request()->routeIs('warga.dashboard') ? 'page' : 'false' }}"
                             @class([
-                                'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition',
-                                'bg-blue-50 text-blue-700' => request()->routeIs('warga.dashboard'),
-                                'text-slate-500 hover:bg-slate-50 hover:text-slate-900' => ! request()->routeIs('warga.dashboard'),
+                                'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-xs font-semibold tracking-wide transition',
+                                'bg-white text-[#3C0F15] shadow-xs' => request()->routeIs('warga.dashboard'),
+                                'text-[#E0D0D2] hover:bg-[#4A151C] hover:text-white' => ! request()->routeIs('warga.dashboard'),
                             ])
                         >
-                            <i data-lucide="layout-dashboard" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
-                            Dashboard
+                            <i data-lucide="layout-dashboard" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+                            Dashboard Warga
                         </a>
                         <a
                             href="{{ route('warga.laporan.index') }}"
                             aria-current="{{ request()->routeIs('warga.laporan.index', 'warga.laporan.show', 'warga.laporan.edit') ? 'page' : 'false' }}"
                             @class([
-                                'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition',
-                                'bg-blue-50 text-blue-700' => request()->routeIs('warga.laporan.index', 'warga.laporan.show', 'warga.laporan.edit'),
-                                'text-slate-500 hover:bg-slate-50 hover:text-slate-900' => ! request()->routeIs('warga.laporan.index', 'warga.laporan.show', 'warga.laporan.edit'),
+                                'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-xs font-semibold tracking-wide transition',
+                                'bg-white text-[#3C0F15] shadow-xs' => request()->routeIs('warga.laporan.index', 'warga.laporan.show', 'warga.laporan.edit'),
+                                'text-[#E0D0D2] hover:bg-[#4A151C] hover:text-white' => ! request()->routeIs('warga.laporan.index', 'warga.laporan.show', 'warga.laporan.edit'),
                             ])
                         >
-                            <i data-lucide="files" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+                            <i data-lucide="archive" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                             Pengaduan Saya
                         </a>
                         <a
                             href="{{ route('warga.laporan.create') }}"
                             aria-current="{{ request()->routeIs('warga.laporan.create') ? 'page' : 'false' }}"
                             @class([
-                                'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition',
-                                'bg-blue-50 text-blue-700' => request()->routeIs('warga.laporan.create'),
-                                'text-slate-500 hover:bg-slate-50 hover:text-slate-900' => ! request()->routeIs('warga.laporan.create'),
+                                'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-xs font-semibold tracking-wide transition',
+                                'bg-white text-[#3C0F15] shadow-xs' => request()->routeIs('warga.laporan.create'),
+                                'text-[#E0D0D2] hover:bg-[#4A151C] hover:text-white' => ! request()->routeIs('warga.laporan.create'),
                             ])
                         >
-                            <i data-lucide="circle-plus" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
-                            Buat Pengaduan
+                            <i data-lucide="plus-circle" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+                            Buat Pengaduan Baru
                         </a>
                         <a
                             href="{{ route('warga.profile') }}"
                             aria-current="{{ request()->routeIs('warga.profile') ? 'page' : 'false' }}"
                             @class([
-                                'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition',
-                                'bg-blue-50 text-blue-700' => request()->routeIs('warga.profile'),
-                                'text-slate-500 hover:bg-slate-50 hover:text-slate-900' => ! request()->routeIs('warga.profile'),
+                                'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-xs font-semibold tracking-wide transition',
+                                'bg-white text-[#3C0F15] shadow-xs' => request()->routeIs('warga.profile'),
+                                'text-[#E0D0D2] hover:bg-[#4A151C] hover:text-white' => ! request()->routeIs('warga.profile'),
                             ])
                         >
-                            <i data-lucide="user-round" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
-                            Profil Saya
+                            <i data-lucide="user" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+                            Profil & Data Warga
                         </a>
                     @endif
                 </nav>
             </div>
-            <div class="mx-5 mt-auto mb-5 rounded-2xl bg-slate-50 p-4">
-                <span class="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-blue-600 shadow-xs">
-                    <i data-lucide="heart-handshake" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
-                </span>
-                <p class="text-sm font-bold">Setiap suara berarti.</p>
-                <p class="mt-2 text-xs leading-5 text-slate-500">Bersama wujudkan lingkungan yang nyaman untuk semua.</p>
+
+            <div class="m-4 rounded-md border border-[#521820] bg-[#330C12] p-3.5 text-xs">
+                <div class="flex items-center gap-2 text-white font-serif text-sm font-bold">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                    Transparansi Publik
+                </div>
+                <p class="mt-1 text-[11px] leading-relaxed text-[#D6C4C6]">Setiap aduan warga diverifikasi dan ditindaklanjuti secara akuntabel.</p>
             </div>
-            <form method="POST" action="{{ route('logout') }}" class="border-t border-slate-100 p-4">
+
+            <form method="POST" action="{{ route('logout') }}" class="border-t border-[#4A151C] p-3">
                 @csrf
-                <button class="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-500 hover:bg-red-50 hover:text-red-600">
-                    <i data-lucide="log-out" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
-                    Keluar
+                <button class="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-xs font-medium text-[#E0D0D2] transition hover:bg-[#4A151C] hover:text-white">
+                    <i data-lucide="log-out" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+                    Keluar Sesi
                 </button>
             </form>
         </aside>
+
+        {{-- Main viewport wrapper --}}
         <div class="lg:pl-64">
-            <header class="flex h-23 items-center justify-between gap-4 border-b border-slate-200/80 bg-white px-5 sm:px-9">
-                <div class="flex items-center gap-4">
-                    <button @click="menuOpen = true" aria-label="Buka navigasi" :aria-expanded="menuOpen" class="rounded-lg p-2 text-slate-600 lg:hidden">
-                        <i data-lucide="menu" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+            <header class="sticky top-0 z-20 flex h-18 items-center justify-between gap-4 border-b border-[#E5DBD9] bg-white/95 px-5 backdrop-blur-xs sm:px-8">
+                <div class="flex items-center gap-3">
+                    <button @click="menuOpen = true" aria-label="Buka navigasi" :aria-expanded="menuOpen" class="rounded-md border border-[#E5DBD9] p-2 text-[#4A151C] hover:bg-[#F7F4F2] lg:hidden">
+                        <i data-lucide="menu" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                     </button>
                     <div>
-                        <p class="text-sm font-semibold">{{ $title ?? 'Dashboard' }}</p>
-                        <p class="mt-1 hidden text-xs text-slate-400 sm:block">Layanan pengaduan masyarakat</p>
+                        <p class="font-serif text-base font-bold text-[#1C1819]">{{ $title ?? 'Dashboard' }}</p>
+                        <p class="hidden font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E] sm:block">Sistem Informasi Pengaduan & Layanan Publik</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <span class="hidden rounded-lg border border-slate-200 px-3 py-2 text-xs text-slate-500 md:inline-flex">{{ now()->locale('id')->translatedFormat('d F Y') }}</span>
-                    <span class="mx-2 hidden h-8 w-px bg-slate-100 md:block"></span>
-                    @if(auth()->user()->foto)
-                        <img src="{{ Storage::disk('public')->url(auth()->user()->foto) }}" alt="Foto profil" class="h-10 w-10 rounded-full object-cover">
-                    @else
-                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-blue-700">{{ mb_substr(auth()->user()->name, 0, 1) }}</span>
-                    @endif
-                    <div class="hidden sm:block">
-                        <p class="max-w-40 truncate text-sm font-bold">{{ auth()->user()->name }}</p>
-                        <p class="mt-0.5 text-xs text-slate-500">{{ auth()->user()->role === 'admin' ? 'Administrator' : 'Warga' }}</p>
+
+                <div class="flex items-center gap-4">
+                    <div class="hidden items-center gap-2 rounded-md border border-[#E5DBD9] bg-[#FAF7F5] px-3 py-1.5 font-mono text-[11px] text-[#554749] md:flex">
+                        <i data-lucide="calendar" aria-hidden="true" class="h-3.5 w-3.5 text-[#4A151C]"></i>
+                        <span>{{ now()->locale('id')->translatedFormat('d F Y') }}</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 border-l border-[#E5DBD9] pl-4">
+                        @if(auth()->user()->foto)
+                            <img src="{{ Storage::disk('public')->url(auth()->user()->foto) }}" alt="Foto profil" class="h-9 w-9 rounded-md object-cover ring-1 ring-[#4A151C]/20">
+                        @else
+                            <span class="flex h-9 w-9 items-center justify-center rounded-md bg-[#4A151C] font-mono text-xs font-bold text-white shadow-2xs">{{ mb_substr(auth()->user()->name, 0, 1) }}</span>
+                        @endif
+                        <div class="hidden text-left sm:block">
+                            <p class="max-w-36 truncate text-xs font-bold text-[#1C1819]">{{ auth()->user()->name }}</p>
+                            <span class="inline-block font-mono text-[10px] uppercase tracking-wider text-[#4A151C] font-semibold">{{ auth()->user()->role === 'admin' ? 'Administrator' : 'Warga Terdaftar' }}</span>
+                        </div>
                     </div>
                 </div>
             </header>
-            {{-- Isi halaman Livewire ditampilkan melalui slot ini --}}
-            <main id="main-content" class="mx-auto min-h-[calc(100vh-156px)] max-w-7xl px-5 py-8 sm:px-9 sm:py-10">{{ $slot }}</main>
-            <footer class="flex flex-wrap justify-between gap-2 border-t border-slate-200 px-5 py-5 text-xs text-slate-400 sm:px-9">
-                <p>© {{ date('Y') }} E-Report</p>
-                <p>Suara Warga, Langkah Perubahan.</p>
+
+            <main id="main-content" class="mx-auto min-h-[calc(100vh-140px)] max-w-7xl px-4 py-8 sm:px-8 sm:py-10">
+                {{ $slot }}
+            </main>
+
+            <footer class="flex flex-wrap items-center justify-between gap-3 border-t border-[#E5DBD9] bg-white px-5 py-4 font-mono text-[11px] text-[#7A6B6E] sm:px-8">
+                <p>&copy; {{ date('Y') }} E-Report Layanan Sipil.</p>
+                <div class="flex items-center gap-3">
+                    <span>Sistem Akuntabilitas Publik</span>
+                    <span>&middot;</span>
+                    <a href="{{ route('home') }}" class="hover:text-[#4A151C] underline underline-offset-2">Beranda Publik</a>
+                </div>
             </footer>
         </div>
+
         @livewireScripts
         <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
         <script>

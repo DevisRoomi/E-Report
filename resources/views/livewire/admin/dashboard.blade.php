@@ -1,164 +1,166 @@
 <div wire:poll.30s>
-    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-[#DCD5C8] pb-6">
         <div>
-            <h1 class="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Dashboard Administrator</h1>
-            <p class="mt-2 text-sm leading-relaxed text-slate-500">Pantau pengaduan dan tindak lanjuti kebutuhan warga.</p>
+            <span class="font-mono text-[11px] font-bold tracking-[.2em] uppercase text-[#C59B27]">PUSAT KENDALI REGISTRATUR</span>
+            <h1 class="mt-1 font-serif text-3xl font-bold tracking-tight text-[#1C1819] sm:text-4xl">Dashboard Administrator</h1>
+            <p class="mt-1 text-xs leading-relaxed text-[#7A6B6E]">Pantau seluruh arus pengaduan fasilitas sipil dan eskalasi penanganan dinas terkait.</p>
         </div>
         <a
             href="{{ route('admin.laporan.index') }}"
-            class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition bg-blue-600 text-white shadow-sm shadow-blue-200 hover:bg-blue-700"
+            class="inline-flex items-center justify-center gap-2 rounded-md bg-[#4A151C] px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-xs transition hover:bg-[#3C0F15]"
         >
-            Kelola Pengaduan
-            <i data-lucide="arrow-right" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+            Kelola Arsip Pengaduan
+            <i data-lucide="arrow-right" aria-hidden="true" class="h-3.5 w-3.5 shrink-0"></i>
         </a>
     </div>
+
     {{-- Ringkasan dari data yang dikirim oleh class Livewire --}}
     <div class="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-        <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs">
+        <div class="rounded-lg border border-[#DCD5C8] bg-white p-5 shadow-xs">
             <div class="flex items-center justify-between gap-3">
-                <span class="text-sm text-slate-500">Total Pengaduan</span>
-                <span class="rounded-xl p-2.5 bg-slate-100 text-slate-600">
-                    <i data-lucide="files" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">Total Pengaduan</span>
+                <span class="rounded p-2 bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C]">
+                    <i data-lucide="files" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                 </span>
             </div>
-            <p class="mt-3 font-display text-3xl font-bold tracking-tight">{{ number_format($total) }}</p>
-            <p class="mt-2 text-xs text-slate-400">Pengaduan tercatat</p>
+            <p class="mt-3 font-display text-4xl text-[#1C1819]">{{ number_format($total) }}</p>
+            <p class="mt-1 font-mono text-[10px] text-[#7A6B6E]">Total arsip masuk</p>
         </div>
-        <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs">
+        <div class="rounded-lg border border-[#DCD5C8] bg-white p-5 shadow-xs">
             <div class="flex items-center justify-between gap-3">
-                <span class="text-sm text-slate-500">Menunggu</span>
-                <span class="rounded-xl p-2.5 bg-amber-50 text-amber-600">
-                    <i data-lucide="clock-3" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">Menunggu</span>
+                <span class="rounded p-2 bg-[#FAF7F2] border border-[#ECE7DF] text-[#8C6D0F]">
+                    <i data-lucide="clock-3" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                 </span>
             </div>
-            <p class="mt-3 font-display text-3xl font-bold tracking-tight">{{ number_format($stats['pending']) }}</p>
-            <p class="mt-2 text-xs text-slate-400">Pengaduan tercatat</p>
+            <p class="mt-3 font-display text-4xl text-[#8C6D0F]">{{ number_format($stats['pending']) }}</p>
+            <p class="mt-1 font-mono text-[10px] text-[#7A6B6E]">Perlu verifikasi</p>
         </div>
-        <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs">
+        <div class="rounded-lg border border-[#DCD5C8] bg-white p-5 shadow-xs">
             <div class="flex items-center justify-between gap-3">
-                <span class="text-sm text-slate-500">Sedang Diproses</span>
-                <span class="rounded-xl p-2.5 bg-blue-50 text-blue-600">
-                    <i data-lucide="loader-circle" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">Sedang Diproses</span>
+                <span class="rounded p-2 bg-[#F5F8FA] border border-[#ECE7DF] text-[#28577D]">
+                    <i data-lucide="loader-circle" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                 </span>
             </div>
-            <p class="mt-3 font-display text-3xl font-bold tracking-tight">{{ number_format($stats['proses']) }}</p>
-            <p class="mt-2 text-xs text-slate-400">Pengaduan tercatat</p>
+            <p class="mt-3 font-display text-4xl text-[#28577D]">{{ number_format($stats['proses']) }}</p>
+            <p class="mt-1 font-mono text-[10px] text-[#7A6B6E]">Tindak lapangan</p>
         </div>
-        <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs">
+        <div class="rounded-lg border border-[#DCD5C8] bg-white p-5 shadow-xs">
             <div class="flex items-center justify-between gap-3">
-                <span class="text-sm text-slate-500">Selesai</span>
-                <span class="rounded-xl p-2.5 bg-emerald-50 text-emerald-600">
-                    <i data-lucide="circle-check" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">Selesai</span>
+                <span class="rounded p-2 bg-[#F3F7F4] border border-[#ECE7DF] text-[#1D5E38]">
+                    <i data-lucide="circle-check" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                 </span>
             </div>
-            <p class="mt-3 font-display text-3xl font-bold tracking-tight">{{ number_format($stats['selesai']) }}</p>
-            <p class="mt-2 text-xs text-slate-400">Pengaduan tercatat</p>
+            <p class="mt-3 font-display text-4xl text-[#1D5E38]">{{ number_format($stats['selesai']) }}</p>
+            <p class="mt-1 font-mono text-[10px] text-[#7A6B6E]">Tuntas ditangani</p>
         </div>
-        <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs">
+        <div class="rounded-lg border border-[#DCD5C8] bg-white p-5 shadow-xs">
             <div class="flex items-center justify-between gap-3">
-                <span class="text-sm text-slate-500">Warga Terdaftar</span>
-                <span class="rounded-xl p-2.5 bg-violet-50 text-violet-600">
-                    <i data-lucide="users" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">Warga Terdaftar</span>
+                <span class="rounded p-2 bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C]">
+                    <i data-lucide="users" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                 </span>
             </div>
-            <p class="mt-3 font-display text-3xl font-bold tracking-tight">{{ number_format($citizens) }}</p>
-            <p class="mt-2 text-xs text-slate-400">Akun warga aktif</p>
+            <p class="mt-3 font-display text-4xl text-[#4A151C]">{{ number_format($citizens) }}</p>
+            <p class="mt-1 font-mono text-[10px] text-[#7A6B6E]">Pelapor sipil aktif</p>
         </div>
     </div>
+
     <div class="mb-8 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-        <section class="rounded-2xl border border-slate-200 bg-white p-6">
-            <h2 class="font-display font-bold">Ringkasan Status Pengaduan</h2>
-            <p class="mt-1 text-xs text-slate-400">Distribusi seluruh pengaduan yang masuk</p>
-            <div class="mt-7 space-y-6">
+        <section class="rounded-lg border border-[#DCD5C8] bg-white p-6">
+            <div class="flex items-center justify-between border-b border-[#ECE7DF] pb-4">
+                <div>
+                    <h2 class="font-serif text-lg font-bold text-[#1C1819]">Distribusi Status Pengaduan</h2>
+                    <p class="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">Rasio penyelesaian berkas aduan sipil</p>
+                </div>
+            </div>
+            <div class="mt-6 space-y-5">
                 @foreach(\App\Models\Laporan::STATUSES as $status => $label)
                     <div>
-                        <div class="mb-2 flex justify-between text-xs">
-                            <span class="text-slate-500">{{ $label }}</span>
-                            <span class="font-bold">
+                        <div class="mb-2 flex justify-between font-mono text-xs">
+                            <span class="font-semibold text-[#554749]">{{ $label }}</span>
+                            <span class="font-bold text-[#1C1819]">
                                 {{ $stats[$status] }}
-                                <span class="ml-2 font-normal text-slate-400">( {{ $total ? round($stats[$status] / $total * 100) : 0 }} %)</span>
+                                <span class="ml-1 text-[#7A6B6E] font-normal">({{ $total ? round($stats[$status] / $total * 100) : 0 }}%)</span>
                             </span>
                         </div>
-                        <div class="h-2.5 overflow-hidden rounded-full bg-slate-100" role="meter" aria-label="{{ $label }}" aria-valuenow="{{ $stats[$status] }}" aria-valuemin="0" aria-valuemax="{{ max(1, $total) }}">
-                            <div @class(['h-full rounded-full', 'bg-amber-400' => $status === 'pending', 'bg-blue-500' => $status === 'proses', 'bg-emerald-500' => $status === 'selesai']) style="width: {{ $total ? $stats[$status] / $total * 100 : 0 }}%"></div>
+                        <div class="h-2 overflow-hidden rounded bg-[#FAF7F5] border border-[#ECE7DF]" role="meter" aria-label="{{ $label }}" aria-valuenow="{{ $stats[$status] }}" aria-valuemin="0" aria-valuemax="{{ max(1, $total) }}">
+                            <div @class(['h-full', 'bg-[#C59B27]' => $status === 'pending', 'bg-[#28577D]' => $status === 'proses', 'bg-[#1D5E38]' => $status === 'selesai']) style="width: {{ $total ? $stats[$status] / $total * 100 : 0 }}%"></div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </section>
-        <section class="flex flex-col justify-between rounded-2xl bg-blue-950 p-7 text-white">
-            <span class="mb-5 inline-flex w-fit rounded-xl bg-white/10 p-3 text-blue-200">
-                <i data-lucide="clipboard-list" aria-hidden="true" class="h-7 w-7 shrink-0"></i>
-            </span>
+
+        <section class="flex flex-col justify-between rounded-lg bg-[#3C0F15] p-6 text-white border border-[#310A10]">
             <div>
-                <p class="font-display text-xl font-bold">{{ $stats['pending'] }} pengaduan menunggu</p>
-                <p class="mt-3 text-sm leading-7 text-blue-200">Tinjau laporan yang masuk dan mulai penanganan untuk membantu warga.</p>
+                <span class="inline-flex rounded bg-white/10 p-2.5 text-[#C59B27]">
+                    <i data-lucide="clipboard-list" aria-hidden="true" class="h-6 w-6 shrink-0"></i>
+                </span>
+                <p class="mt-4 font-mono text-xs font-bold tracking-[.2em] uppercase text-[#C59B27]">ANTREAN VERIFIKASI</p>
+                <p class="mt-1 font-serif text-2xl font-bold">{{ $stats['pending'] }} berkas menunggu</p>
+                <p class="mt-2 text-xs leading-relaxed text-[#D6C4C6]">Segera tinjau laporan yang baru masuk untuk dialokasikan ke dinas teknis terkait.</p>
             </div>
-            <a href="{{ route('admin.laporan.index') }}" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-white">
-                Tinjau pengaduan
-                <i data-lucide="arrow-right" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+            <a href="{{ route('admin.laporan.index') }}" class="mt-6 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-white hover:text-[#C59B27] transition">
+                Tinjau Pengaduan Masuk
+                <i data-lucide="arrow-right" aria-hidden="true" class="h-3.5 w-3.5 shrink-0"></i>
             </a>
         </section>
     </div>
+
     {{-- Pengaduan terbaru --}}
-    <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs">
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-6 py-5">
+    <div class="overflow-hidden rounded-lg border border-[#DCD5C8] bg-white shadow-xs">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#ECE7DF] px-6 py-4">
             <div>
-                <h2 class="font-display font-bold">Pengaduan Terbaru</h2>
-                <p class="mt-1 text-xs text-slate-400">Perkembangan terbaru dari pengaduan warga</p>
+                <h2 class="font-serif text-lg font-bold text-[#1C1819]">Pengaduan Terkini</h2>
+                <p class="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">Catatan kronologis laporan masuk terakhir</p>
             </div>
-            <a href="{{ route('admin.laporan.index') }}" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600">
-                Lihat semua
-                <i data-lucide="arrow-right" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+            <a href="{{ route('admin.laporan.index') }}" class="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-[#4A151C] hover:underline underline-offset-2">
+                Lihat Seluruh Arsip
+                <i data-lucide="arrow-right" aria-hidden="true" class="h-3.5 w-3.5 shrink-0"></i>
             </a>
         </div>
         @if($recent->isEmpty())
-            <div class="px-6 py-16 text-center">
-                <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                    <i data-lucide="inbox" aria-hidden="true" class="h-8 w-8 shrink-0"></i>
+            <div class="px-6 py-14 text-center">
+                <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#FAF7F5] border border-[#ECE7DF] text-[#7A6B6E]">
+                    <i data-lucide="inbox" aria-hidden="true" class="h-6 w-6 shrink-0"></i>
                 </div>
-                <h3 class="font-display text-lg font-bold text-slate-800">Belum ada pengaduan</h3>
-                <p class="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-slate-500">Pengaduan dari warga akan muncul di sini.</p>
+                <h3 class="font-serif text-base font-bold text-[#1C1819]">Belum Ada Pengaduan</h3>
+                <p class="mx-auto mt-1 max-w-sm text-xs text-[#7A6B6E]">Pengaduan dari warga akan muncul secara otomatis di daftar ini.</p>
             </div>
         @else
             <div class="overflow-x-auto">
-                <table class="w-full min-w-[580px] text-left text-sm">
-                    <thead class="bg-slate-50/70 text-xs text-slate-400">
+                <table class="w-full min-w-[580px] text-left text-xs">
+                    <thead class="border-b border-[#ECE7DF] bg-[#FAF7F5] font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">
                         <tr>
-                            <th class="px-6 py-3 font-medium">Pengaduan</th>
-                            <th class="px-4 py-3 font-medium">Pelapor</th>
-                            <th class="px-4 py-3 font-medium">Tanggal Pengajuan</th>
-                            <th class="px-4 py-3 font-medium">Status</th>
-                            <th class="px-6 py-3 text-right font-medium">Aksi</th>
+                            <th class="px-6 py-3 font-semibold">Pengaduan</th>
+                            <th class="px-4 py-3 font-semibold">Pelapor</th>
+                            <th class="px-4 py-3 font-semibold">Tanggal Berkas</th>
+                            <th class="px-4 py-3 font-semibold">Status</th>
+                            <th class="px-6 py-3 text-right font-semibold">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100">
+                    <tbody class="divide-y divide-[#ECE7DF]">
                         @foreach($recent as $laporan)
-                            <tr class="hover:bg-slate-50/60">
-                                <td class="max-w-xs px-6 py-5">
-                                    <p class="truncate font-semibold text-slate-800">{{ $laporan->judul }}</p>
-                                    <p class="mt-1 text-xs text-slate-400"># {{ str_pad($laporan->id, 5, '0', STR_PAD_LEFT) }}</p>
+                            <tr class="hover:bg-[#FAF7F5]/80 transition">
+                                <td class="max-w-xs px-6 py-4">
+                                    <p class="truncate font-semibold text-[#1C1819]">{{ $laporan->judul }}</p>
+                                    <p class="mt-0.5 font-mono text-[10px] text-[#7A6B6E]">#{{ str_pad($laporan->id, 5, '0', STR_PAD_LEFT) }}</p>
                                 </td>
-                                <td class="px-4 py-5 text-slate-500">{{ $laporan->pelapor->name }}</td>
-                                <td class="px-4 py-5 text-xs text-slate-500">{{ $laporan->created_at->translatedFormat('d M Y') }}</td>
-                                <td class="px-4 py-5">
-                                    <span @class([
-                                    'inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold',
-                                    'bg-amber-50 text-amber-800 ring-1 ring-inset ring-amber-200' => $laporan->status === 'pending',
-                                    'bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-200' => $laporan->status === 'proses',
-                                    'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200' => $laporan->status === 'selesai',
-                                    ])>
-                                        <span class="h-1.5 w-1.5 rounded-full bg-current"></span>
-                                        {{ \App\Models\Laporan::STATUSES[$laporan->status] ?? $laporan->status }}
-                                    </span>
+                                <td class="px-4 py-4 text-[#554749]">{{ $laporan->pelapor->name }}</td>
+                                <td class="px-4 py-4 font-mono text-[11px] text-[#7A6B6E]">{{ $laporan->created_at->translatedFormat('d M Y') }}</td>
+                                <td class="px-4 py-4">
+                                    <x-badge-status :status="$laporan->status" />
                                 </td>
-                                <td class="px-6 py-5 text-right">
+                                <td class="px-6 py-4 text-right">
                                     <a
                                         href="{{ route('admin.laporan.show', $laporan) }}"
-                                        class="inline-flex items-center gap-1 text-xs font-bold text-blue-600"
+                                        class="inline-flex items-center gap-1 font-mono text-xs font-bold uppercase tracking-wider text-[#4A151C] hover:underline"
                                     >
                                         Detail
-                                        <i data-lucide="arrow-up-right" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+                                        <i data-lucide="arrow-up-right" aria-hidden="true" class="h-3.5 w-3.5 shrink-0"></i>
                                     </a>
                                 </td>
                             </tr>

@@ -1,15 +1,22 @@
 <div>
-    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-[#DCD5C8] pb-6">
         <div>
-            <h1 class="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Edit Pengaduan</h1>
-            <p class="mt-2 text-sm leading-relaxed text-slate-500">Perubahan hanya dapat dilakukan selama pengaduan menunggu peninjauan.</p>
+            <span class="font-mono text-[11px] font-bold tracking-[.2em] uppercase text-[#C59B27]">PERBAIKAN DOKUMEN</span>
+            <h1 class="mt-1 font-serif text-3xl font-bold tracking-tight text-[#1C1819] sm:text-4xl">Edit Pengaduan</h1>
+            <p class="mt-1 text-xs leading-relaxed text-[#7A6B6E]">Perubahan hanya dapat diajukan selama berkas laporan berstatus antrean menunggu.</p>
         </div>
     </div>
-    <form wire:submit="save" class="max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+
+    <form wire:submit="save" class="max-w-3xl rounded-lg border border-[#DCD5C8] bg-white p-6 sm:p-8 shadow-xs">
+        <div class="mb-6 border-b border-[#ECE7DF] pb-4">
+            <span class="font-mono text-[10px] font-bold tracking-wider uppercase text-[#C59B27]">BERKAS #{{ str_pad($laporan->id, 5, '0', STR_PAD_LEFT) }}</span>
+            <h2 class="mt-1 font-serif text-xl font-bold text-[#1C1819]">Koreksi Detail Laporan</h2>
+        </div>
+
         {{-- Formulir pengaduan: setiap input terhubung ke properti Livewire --}}
         <div class="space-y-6">
             <div>
-                <label for="judul" class="mb-2 block text-sm font-semibold text-slate-700">Judul pengaduan</label>
+                <label for="judul" class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-[#1C1819]">Judul pengaduan</label>
                 <input
                     type="text"
                     id="judul"
@@ -19,18 +26,18 @@
                     aria-invalid="true"
                     @enderror
                     wire:model="judul"
-                    placeholder="Contoh: Lampu jalan mati di Jalan Melati"
+                    placeholder="Contoh: Lampu penerangan jalan padam di Jl. Merpati RW 04"
                     maxlength="255"
                     required
-                    class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50"
+                    class="w-full rounded-md border border-[#DCD5C8] bg-[#FAF7F5] px-4 py-3 text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:bg-white focus:ring-1 focus:ring-[#4A151C]"
                 >
-                <p id="judul-help" class="mt-2 text-xs leading-relaxed text-slate-500">Gunakan judul singkat yang menggambarkan masalah.</p>
+                <p id="judul-help" class="mt-1.5 text-[11px] leading-relaxed text-[#7A6B6E]">Gunakan judul singkat yang menggambarkan masalah secara akurat.</p>
                 @error('judul')
-                    <p id="judul-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    <p id="judul-error" role="alert" class="mt-1.5 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                 @enderror
             </div>
             <div>
-                <label for="detail" class="mb-2 block text-sm font-semibold text-slate-700">Deskripsi pengaduan</label>
+                <label for="detail" class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-[#1C1819]">Deskripsi pengaduan</label>
                 <textarea
                     id="detail"
                     name="detail"
@@ -43,15 +50,15 @@
                     placeholder="Ceritakan masalah secara jelas, termasuk lokasi dan dampaknya bagi warga…"
                     maxlength="10000"
                     required
-                    class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 min-h-32"
+                    class="w-full rounded-md border border-[#DCD5C8] bg-[#FAF7F5] px-4 py-3 text-xs leading-relaxed text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:bg-white focus:ring-1 focus:ring-[#4A151C] min-h-32"
                 ></textarea>
-                <p id="detail-help" class="mt-2 text-xs leading-relaxed text-slate-500">Jelaskan lokasi kejadian dalam deskripsi. Maksimal 10.000 karakter.</p>
+                <p id="detail-help" class="mt-1.5 text-[11px] leading-relaxed text-[#7A6B6E]">Jelaskan lokasi kejadian dalam deskripsi. Maksimal 10.000 karakter.</p>
                 @error('detail')
-                    <p id="detail-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    <p id="detail-error" role="alert" class="mt-1.5 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                 @enderror
             </div>
             <div>
-                <label for="tanggal" class="mb-2 block text-sm font-semibold text-slate-700">Tanggal kejadian</label>
+                <label for="tanggal" class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-[#1C1819]">Tanggal kejadian</label>
                 <input
                     type="date"
                     id="tanggal"
@@ -63,15 +70,15 @@
                     wire:model="tanggal"
                     max="{{ today()->format('Y-m-d') }}"
                     required
-                    class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50 file:mr-3 file:rounded-lg file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:text-blue-700"
+                    class="w-full rounded-md border border-[#DCD5C8] bg-[#FAF7F5] px-4 py-2.5 font-mono text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:bg-white focus:ring-1 focus:ring-[#4A151C]"
                 >
                 @error('tanggal')
-                    <p id="tanggal-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    <p id="tanggal-error" role="alert" class="mt-1.5 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-5">
+            <div class="rounded-lg border border-[#DCD5C8] bg-[#FAF7F5] p-5">
                 <div>
-                    <label for="foto" class="mb-2 block text-sm font-semibold text-slate-700">Foto bukti (opsional)</label>
+                    <label for="foto" class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-[#1C1819]">Foto bukti baru (opsional)</label>
                     <input
                         type="file"
                         id="foto"
@@ -82,32 +89,33 @@
                         @enderror
                         wire:model="foto"
                         accept="image/jpeg,image/png,image/webp"
-                        class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50 file:mr-3 file:rounded-lg file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:text-blue-700"
+                        class="w-full rounded-md border border-[#DCD5C8] bg-white px-3 py-2 text-xs font-mono text-[#554749] outline-none file:mr-3 file:rounded file:border-0 file:bg-[#4A151C] file:px-3 file:py-1.5 file:font-mono file:text-xs file:font-bold file:uppercase file:tracking-wider file:text-white hover:file:bg-[#3C0F15]"
                     >
-                    <p id="foto-help" class="mt-2 text-xs leading-relaxed text-slate-500">JPG, PNG, atau WebP. Maksimal 2 MB. Pilih foto yang memperjelas pengaduan.</p>
+                    <p id="foto-help" class="mt-2 text-[11px] leading-relaxed text-[#7A6B6E]">JPG, PNG, atau WebP. Maksimal 2 MB. Kosongkan jika tidak ingin mengubah foto bukti.</p>
                     @error('foto')
-                        <p id="foto-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        <p id="foto-error" role="alert" class="mt-1.5 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                     @enderror
                 </div>
-                <p wire:loading wire:target="foto" role="status" class="mt-3 text-xs text-blue-600">Mengunggah foto…</p>
+                <p wire:loading wire:target="foto" role="status" class="mt-3 font-mono text-xs text-[#4A151C]">Mengunggah foto…</p>
                 @if($laporan->foto)
-                    <div class="mt-4">
-                        <p class="mb-2 text-xs text-slate-500">Foto saat ini. Unggah foto baru untuk menggantinya.</p>
-                        <img src="{{ Storage::disk('public')->url($laporan->foto) }}" alt="Foto bukti saat ini" class="max-h-44 rounded-xl object-contain">
+                    <div class="mt-4 border-t border-[#ECE7DF] pt-4">
+                        <p class="mb-2 font-mono text-[11px] text-[#7A6B6E]">Foto bukti saat ini:</p>
+                        <img src="{{ Storage::disk('public')->url($laporan->foto) }}" alt="Foto bukti saat ini" class="max-h-44 rounded-md border border-[#DCD5C8] object-contain">
                     </div>
                 @endif
             </div>
         </div>
-        <div class="mt-8 flex flex-wrap justify-end gap-3 border-t border-slate-100 pt-6">
+
+        <div class="mt-8 flex flex-wrap justify-end gap-3 border-t border-[#ECE7DF] pt-6">
             <a
                 href="{{ route('warga.laporan.show', $laporan) }}"
-                class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+                class="inline-flex items-center justify-center rounded-md border border-[#DCD5C8] bg-white px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-[#554749] hover:bg-[#FAF7F5] transition"
             >Batal</a>
             <button
                 type="submit"
                 wire:loading.attr="disabled"
                 wire:target="save,foto"
-                class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition bg-blue-600 text-white shadow-sm shadow-blue-200 hover:bg-blue-700"
+                class="inline-flex items-center justify-center gap-2 rounded-md bg-[#4A151C] px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-xs transition hover:bg-[#3C0F15]"
             >
                 <span wire:loading.remove wire:target="save">Simpan Perubahan</span>
                 <span wire:loading wire:target="save">Menyimpan…</span>

@@ -1,29 +1,31 @@
 <div>
-    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-[#DCD5C8] pb-6">
         <div>
-            <h1 class="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Semua Pengaduan</h1>
-            <p class="mt-2 text-sm leading-relaxed text-slate-500">Tinjau dan tindak lanjuti pengaduan yang disampaikan warga.</p>
+            <span class="font-mono text-[11px] font-bold tracking-[.2em] uppercase text-[#C59B27]">REGISTRATUR PENGADUAN</span>
+            <h1 class="mt-1 font-serif text-3xl font-bold tracking-tight text-[#1C1819] sm:text-4xl">Seluruh Berkas Pengaduan</h1>
+            <p class="mt-1 text-xs leading-relaxed text-[#7A6B6E]">Kelola, verifikasi, dan pantau penyelesaian seluruh laporan fasilitas publik warga.</p>
         </div>
     </div>
+
     {{-- Pencarian dan filter pengaduan --}}
-    <div class="mb-5 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 sm:flex-row">
+    <div class="mb-6 flex flex-col gap-3 rounded-lg border border-[#DCD5C8] bg-white p-4 sm:flex-row shadow-xs">
         <div class="relative flex-1">
             <label for="search" class="sr-only">Cari pengaduan</label>
-            <span class="pointer-events-none absolute top-3.5 left-3 text-slate-400">
+            <span class="pointer-events-none absolute top-3 left-3 text-[#7A6B6E]">
                 <i data-lucide="search" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
             </span>
             <input
                 id="search"
                 type="search"
                 wire:model.live.debounce.350ms="search"
-                placeholder="Cari judul atau nama pelapor…"
-                class="w-full rounded-xl border border-slate-200 py-3 pr-4 pl-10 text-sm"
+                placeholder="Cari berdasarkan judul berkas atau nama pelapor…"
+                class="w-full rounded-md border border-[#DCD5C8] bg-[#FAF7F5] py-2.5 pr-4 pl-9 text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:bg-white focus:ring-1 focus:ring-[#4A151C]"
             >
         </div>
         <div>
             <label for="status" class="sr-only">Filter status</label>
-            <select id="status" wire:model.live="status" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 sm:w-48">
-                <option value="">Semua status</option>
+            <select id="status" wire:model.live="status" class="w-full rounded-md border border-[#DCD5C8] bg-[#FAF7F5] px-3.5 py-2.5 font-mono text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:bg-white sm:w-48">
+                <option value="">Semua Status Berkas</option>
                 @foreach(\App\Models\Laporan::STATUSES as $value => $label)
                     <option value="{{ $value }}">{{ $label }}</option>
                 @endforeach
@@ -31,67 +33,60 @@
         </div>
         <div>
             <label for="sort" class="sr-only">Urutan pengaduan</label>
-            <select id="sort" wire:model.live="sort" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 sm:w-36">
+            <select id="sort" wire:model.live="sort" class="w-full rounded-md border border-[#DCD5C8] bg-[#FAF7F5] px-3.5 py-2.5 font-mono text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:bg-white sm:w-36">
                 <option value="newest">Terbaru</option>
                 <option value="oldest">Terlama</option>
             </select>
         </div>
-        <span wire:loading role="status" class="self-center text-xs text-blue-600">Memuat…</span>
+        <span wire:loading role="status" class="self-center font-mono text-xs text-[#4A151C]">Memuat…</span>
     </div>
+
     {{-- Tabel pengaduan dan pagination --}}
-    <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+    <div class="overflow-hidden rounded-lg border border-[#DCD5C8] bg-white shadow-xs">
         @if($laporans->isEmpty())
             <div class="px-6 py-16 text-center">
-                <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                    <i data-lucide="inbox" aria-hidden="true" class="h-8 w-8 shrink-0"></i>
+                <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#FAF7F5] border border-[#ECE7DF] text-[#7A6B6E]">
+                    <i data-lucide="inbox" aria-hidden="true" class="h-6 w-6 shrink-0"></i>
                 </div>
-                <h3 class="font-display text-lg font-bold text-slate-800">Belum ada pengaduan yang ditemukan</h3>
-                <p class="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-slate-500">Coba kata kunci atau filter lain. Pengaduan yang sesuai akan tampil di sini.</p>
+                <h3 class="font-serif text-lg font-bold text-[#1C1819]">Tidak Ada Berkas Ditemukan</h3>
+                <p class="mx-auto mt-1 max-w-sm text-xs text-[#7A6B6E]">Sesuaikan kata kunci pencarian atau opsi filter status pengaduan.</p>
             </div>
         @else
             <div class="overflow-x-auto">
-                <table class="w-full min-w-[800px] text-left text-sm">
-                    <thead class="bg-slate-50 text-xs text-slate-500">
+                <table class="w-full min-w-[800px] text-left text-xs">
+                    <thead class="border-b border-[#ECE7DF] bg-[#FAF7F5] font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">
                         <tr>
-                            <th class="px-6 py-4 font-medium">ID / Judul Pengaduan</th>
-                            <th class="px-4 py-4 font-medium">Pelapor</th>
-                            <th class="px-4 py-4 font-medium">Tanggal Pengajuan</th>
-                            <th class="px-4 py-4 font-medium">Status</th>
-                            <th class="px-6 py-4 text-right font-medium">Aksi</th>
+                            <th class="px-6 py-3.5 font-semibold">ID / Pokok Masalah</th>
+                            <th class="px-4 py-3.5 font-semibold">Identitas Pelapor</th>
+                            <th class="px-4 py-3.5 font-semibold">Tanggal Berkas</th>
+                            <th class="px-4 py-3.5 font-semibold">Status Penanganan</th>
+                            <th class="px-6 py-3.5 text-right font-semibold">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100">
+                    <tbody class="divide-y divide-[#ECE7DF]">
                         @foreach($laporans as $laporan)
-                            <tr wire:key="laporan-{{ $laporan->id }}" class="hover:bg-slate-50/70">
-                                <td class="max-w-xs px-6 py-5">
-                                    <p class="text-[10px] font-bold tracking-wider text-slate-400"># {{ str_pad($laporan->id, 5, '0', STR_PAD_LEFT) }}</p>
+                            <tr wire:key="laporan-{{ $laporan->id }}" class="hover:bg-[#FAF7F5]/80 transition">
+                                <td class="max-w-xs px-6 py-4">
+                                    <p class="font-mono text-[10px] uppercase tracking-wider text-[#7A6B6E]">#{{ str_pad($laporan->id, 5, '0', STR_PAD_LEFT) }}</p>
                                     <a
                                         href="{{ route('admin.laporan.show', $laporan) }}"
-                                        class="mt-1 block truncate font-semibold text-slate-800 hover:text-blue-600"
+                                        class="mt-0.5 block truncate font-semibold text-[#1C1819] hover:text-[#4A151C] transition"
                                     >{{ $laporan->judul }}</a>
                                 </td>
-                                <td class="px-4 py-5 text-xs text-slate-500">{{ $laporan->pelapor->name }}</td>
-                                <td class="px-4 py-5 text-xs text-slate-500">{{ $laporan->created_at->translatedFormat('d M Y') }}</td>
-                                <td class="px-4 py-5">
-                                    <span @class([
-                                    'inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold',
-                                    'bg-amber-50 text-amber-800 ring-1 ring-inset ring-amber-200' => $laporan->status === 'pending',
-                                    'bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-200' => $laporan->status === 'proses',
-                                    'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200' => $laporan->status === 'selesai',
-                                    ])>
-                                        <span class="h-1.5 w-1.5 rounded-full bg-current"></span>
-                                        {{ \App\Models\Laporan::STATUSES[$laporan->status] ?? $laporan->status }}
-                                    </span>
+                                <td class="px-4 py-4 text-[#554749]">{{ $laporan->pelapor->name }}</td>
+                                <td class="px-4 py-4 font-mono text-[11px] text-[#7A6B6E]">{{ $laporan->created_at->translatedFormat('d M Y') }}</td>
+                                <td class="px-4 py-4">
+                                    <x-badge-status :status="$laporan->status" />
                                 </td>
-                                <td class="px-6 py-5">
+                                <td class="px-6 py-4">
                                     <div class="flex justify-end gap-2">
                                         <a
                                             href="{{ route('admin.laporan.show', $laporan) }}"
                                             aria-label="Detail {{ $laporan->judul }}"
-                                            title="Detail"
-                                            class="rounded-lg border border-slate-200 p-2 text-slate-500 hover:bg-blue-50 hover:text-blue-600"
+                                            title="Buka Berkas"
+                                            class="rounded border border-[#DCD5C8] bg-white p-1.5 text-[#554749] hover:border-[#4A151C] hover:bg-[#FAF7F5] hover:text-[#4A151C] transition"
                                         >
-                                            <i data-lucide="eye" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
+                                            <i data-lucide="arrow-up-right" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                                         </a>
                                     </div>
                                 </td>
@@ -100,30 +95,30 @@
                     </tbody>
                 </table>
             </div>
-            <div class="border-t border-slate-100 px-6 py-4">
+            <div class="border-t border-[#ECE7DF] bg-[#FAF7F5] px-6 py-3.5">
                 @if($laporans->hasPages())
-                    <nav role="navigation" aria-label="Halaman pengaduan" class="flex flex-wrap items-center justify-between gap-4 text-xs">
-                        <p class="text-slate-500">Menampilkan {{ $laporans->firstItem() }} – {{ $laporans->lastItem() }} dari {{ $laporans->total() }} pengaduan</p>
-                        <div class="flex items-center gap-3">
+                    <nav role="navigation" aria-label="Halaman pengaduan" class="flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+                        <p class="text-[#7A6B6E]">Menampilkan {{ $laporans->firstItem() }} – {{ $laporans->lastItem() }} dari {{ $laporans->total() }} berkas</p>
+                        <div class="flex items-center gap-2">
                             <button
                                 type="button"
                                 wire:click="previousPage('{{ $laporans->getPageName() }}')"
                                 wire:loading.attr="disabled"
                                 @disabled($laporans->onFirstPage())
-                                class="rounded-lg border border-slate-200 px-3 py-2 text-slate-600 disabled:opacity-40"
+                                class="rounded border border-[#DCD5C8] bg-white px-3 py-1.5 text-[#1C1819] disabled:opacity-40 hover:bg-[#FAF7F5]"
                             >Sebelumnya</button>
-                            <span class="font-bold text-blue-600">{{ $laporans->currentPage() }} / {{ $laporans->lastPage() }}</span>
+                            <span class="font-bold text-[#4A151C]">{{ $laporans->currentPage() }} / {{ $laporans->lastPage() }}</span>
                             <button
                                 type="button"
                                 wire:click="nextPage('{{ $laporans->getPageName() }}')"
                                 wire:loading.attr="disabled"
                                 @disabled(!$laporans->hasMorePages())
-                                class="rounded-lg border border-slate-200 px-3 py-2 text-slate-600 disabled:opacity-40"
+                                class="rounded border border-[#DCD5C8] bg-white px-3 py-1.5 text-[#1C1819] disabled:opacity-40 hover:bg-[#FAF7F5]"
                             >Berikutnya</button>
                         </div>
                     </nav>
                 @else
-                    <p class="text-xs text-slate-400">{{ $laporans->total() }} pengaduan</p>
+                    <p class="font-mono text-xs text-[#7A6B6E]">{{ $laporans->total() }} total berkas tercatat</p>
                 @endif
             </div>
         @endif

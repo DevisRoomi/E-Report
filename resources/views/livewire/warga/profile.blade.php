@@ -1,44 +1,50 @@
 <div>
-    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-[#DCD5C8] pb-6">
         <div>
-            <h1 class="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Profil Saya</h1>
-            <p class="mt-2 text-sm leading-relaxed text-slate-500">Kelola informasi pribadi dan keamanan akun Anda.</p>
+            <span class="font-mono text-[11px] font-bold tracking-[.2em] uppercase text-[#C59B27]">KONFIGURASI PENGGUNA</span>
+            <h1 class="mt-1 font-serif text-3xl font-bold tracking-tight text-[#1C1819] sm:text-4xl">Profil Saya</h1>
+            <p class="mt-1 text-xs leading-relaxed text-[#7A6B6E]">Kelola informasi pribadi, kontak verifikasi, dan keamanan kata sandi akun.</p>
         </div>
     </div>
+
     @if(session('success'))
-        <div role="status" class="mb-6 flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
-            <i data-lucide="circle-check" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+        <div role="status" class="mb-6 flex items-start gap-3 rounded-lg border border-[#B8D7C2] bg-[#F3F7F4] p-4 text-xs font-mono text-[#1D5E38]">
+            <i data-lucide="circle-check" aria-hidden="true" class="h-4 w-4 shrink-0 text-[#1D5E38]"></i>
             <span>{{ session('success') }}</span>
         </div>
     @endif
+
     <div class="grid items-start gap-6 lg:grid-cols-[280px_1fr]">
-        <aside class="rounded-2xl border border-slate-200 bg-white p-7 text-center">
+        <aside class="rounded-lg border border-[#DCD5C8] bg-white p-7 text-center shadow-xs">
             @if(auth()->user()->foto)
-                <img src="{{ Storage::disk('public')->url(auth()->user()->foto) }}" alt="Foto profil Anda" class="mx-auto h-24 w-24 rounded-full object-cover">
+                <img src="{{ Storage::disk('public')->url(auth()->user()->foto) }}" alt="Foto profil Anda" class="mx-auto h-24 w-24 rounded-full object-cover border border-[#DCD5C8]">
             @else
-                <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-blue-50 font-display text-3xl font-bold text-blue-600">{{ mb_substr(auth()->user()->name, 0, 1) }}</div>
+                <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-[#FAF7F5] border border-[#ECE7DF] font-serif text-3xl font-bold text-[#4A151C]">{{ mb_substr(auth()->user()->name, 0, 1) }}</div>
             @endif
-            <h2 class="mt-5 font-display font-bold break-words">{{ auth()->user()->name }}</h2>
-            <p class="mt-2 text-xs break-words text-slate-500">{{ auth()->user()->email }}</p>
-            <span class="mt-4 inline-flex rounded-full bg-blue-50 px-4 py-1 text-xs font-bold text-blue-600">Warga</span>
-            <dl class="mt-6 space-y-4 border-t border-slate-100 pt-5 text-left text-xs">
+            <h2 class="mt-5 font-serif text-xl font-bold break-words text-[#1C1819]">{{ auth()->user()->name }}</h2>
+            <p class="mt-1 font-mono text-xs break-words text-[#7A6B6E]">{{ auth()->user()->email }}</p>
+            <span class="mt-4 inline-flex rounded-full bg-[#FAF7F5] px-4 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-[#4A151C] border border-[#ECE7DF]">Warga Terdaftar</span>
+            <dl class="mt-6 space-y-4 border-t border-[#ECE7DF] pt-5 text-left font-mono text-xs">
                 <div>
-                    <dt class="text-slate-400">WhatsApp</dt>
-                    <dd class="mt-1.5 text-slate-700">{{ auth()->user()->no_whatsapp ?: 'Belum diisi' }}</dd>
+                    <dt class="text-[10px] uppercase tracking-wider text-[#7A6B6E]">WhatsApp</dt>
+                    <dd class="mt-1 text-[#1C1819] font-medium">{{ auth()->user()->no_whatsapp ?: 'Belum diisi' }}</dd>
                 </div>
                 <div>
-                    <dt class="text-slate-400">Alamat</dt>
-                    <dd class="mt-1.5 leading-6 break-words text-slate-700">{{ auth()->user()->alamat ?: 'Belum diisi' }}</dd>
+                    <dt class="text-[10px] uppercase tracking-wider text-[#7A6B6E]">Alamat Tinggal</dt>
+                    <dd class="mt-1 leading-relaxed break-words text-[#554749]">{{ auth()->user()->alamat ?: 'Belum diisi' }}</dd>
                 </div>
             </dl>
         </aside>
+
         <div class="space-y-6">
-            <form wire:submit="updateProfile" class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
-                <h2 class="font-display text-lg font-bold">Informasi Pribadi</h2>
-                <p class="mt-2 text-xs text-slate-500">Pastikan informasi kontak Anda selalu terbaru.</p>
+            <form wire:submit="updateProfile" class="rounded-lg border border-[#DCD5C8] bg-white p-6 sm:p-8 shadow-xs">
+                <span class="font-mono text-[10px] font-bold tracking-wider uppercase text-[#C59B27]">DATA IDENTITAS</span>
+                <h2 class="mt-1 font-serif text-xl font-bold text-[#1C1819]">Informasi Pribadi</h2>
+                <p class="mt-1 text-xs text-[#7A6B6E]">Pastikan informasi kontak Anda selalu valid untuk mempermudah verifikasi dinas terkait.</p>
+
                 <div class="mt-7 space-y-5">
                     <div>
-                        <label for="name" class="mb-2 block text-sm font-semibold text-slate-700">Nama lengkap</label>
+                        <label for="name" class="mb-2 block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1819]">Nama Lengkap</label>
                         <input
                             type="text"
                             id="name"
@@ -50,14 +56,14 @@
                             wire:model="name"
                             autocomplete="name"
                             required
-                            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50"
+                            class="w-full rounded-md border border-[#DCD5C8] bg-white px-4 py-2.5 font-mono text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:ring-1 focus:ring-[#4A151C] read-only:bg-[#FAF7F5]"
                         >
                         @error('name')
-                            <p id="name-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            <p id="name-error" role="alert" class="mt-2 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                         @enderror
                     </div>
                     <div>
-                        <label for="email" class="mb-2 block text-sm font-semibold text-slate-700">Email</label>
+                        <label for="email" class="mb-2 block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1819]">Email</label>
                         <input
                             type="email"
                             id="email"
@@ -68,15 +74,15 @@
                             @enderror
                             value="{{ auth()->user()->email }}"
                             readonly
-                            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50 file:mr-3 file:rounded-lg file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:text-blue-700"
+                            class="w-full rounded-md border border-[#ECE7DF] bg-[#FAF7F5] px-4 py-2.5 font-mono text-xs text-[#7A6B6E] outline-none"
                         >
-                        <p id="email-help" class="mt-2 text-xs leading-relaxed text-slate-500">Email tidak dapat diubah.</p>
+                        <p id="email-help" class="mt-2 font-mono text-[11px] leading-relaxed text-[#7A6B6E]">Alamat surel bersifat permanen sebagai identitas autentikasi.</p>
                         @error('email')
-                            <p id="email-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            <p id="email-error" role="alert" class="mt-2 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                         @enderror
                     </div>
                     <div>
-                        <label for="no_whatsapp" class="mb-2 block text-sm font-semibold text-slate-700">Nomor WhatsApp</label>
+                        <label for="no_whatsapp" class="mb-2 block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1819]">Nomor WhatsApp</label>
                         <input
                             type="tel"
                             id="no_whatsapp"
@@ -88,14 +94,14 @@
                             wire:model="no_whatsapp"
                             autocomplete="tel"
                             required
-                            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50"
+                            class="w-full rounded-md border border-[#DCD5C8] bg-white px-4 py-2.5 font-mono text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:ring-1 focus:ring-[#4A151C]"
                         >
                         @error('no_whatsapp')
-                            <p id="no_whatsapp-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            <p id="no_whatsapp-error" role="alert" class="mt-2 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                         @enderror
                     </div>
                     <div>
-                        <label for="alamat" class="mb-2 block text-sm font-semibold text-slate-700">Alamat</label>
+                        <label for="alamat" class="mb-2 block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1819]">Alamat Tinggal</label>
                         <textarea
                             id="alamat"
                             name="alamat"
@@ -107,14 +113,14 @@
                             autocomplete="street-address"
                             rows="3"
                             required
-                            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 min-h-32"
+                            class="w-full rounded-md border border-[#DCD5C8] bg-white px-4 py-2.5 text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:ring-1 focus:ring-[#4A151C] min-h-32"
                         ></textarea>
                         @error('alamat')
-                            <p id="alamat-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            <p id="alamat-error" role="alert" class="mt-2 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                         @enderror
                     </div>
                     <div>
-                        <label for="foto" class="mb-2 block text-sm font-semibold text-slate-700">Foto profil</label>
+                        <label for="foto" class="mb-2 block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1819]">Foto Profil</label>
                         <input
                             type="file"
                             id="foto"
@@ -125,40 +131,42 @@
                             @enderror
                             wire:model="foto"
                             accept="image/jpeg,image/png,image/webp"
-                            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50 file:mr-3 file:rounded-lg file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:text-blue-700"
+                            class="w-full rounded-md border border-[#DCD5C8] bg-white px-4 py-2.5 font-mono text-xs text-[#554749] outline-none file:mr-3 file:rounded-md file:border-0 file:bg-[#FAF7F5] file:px-3 file:py-1.5 file:font-mono file:text-xs file:font-bold file:text-[#4A151C] file:border file:border-[#ECE7DF]"
                         >
-                        <p id="foto-help" class="mt-2 text-xs leading-relaxed text-slate-500">JPG, PNG, atau WebP. Maksimal 2 MB.</p>
+                        <p id="foto-help" class="mt-2 font-mono text-[11px] leading-relaxed text-[#7A6B6E]">Format berkas JPG, PNG, atau WebP. Ukuran maksimal 2 MB.</p>
                         @error('foto')
-                            <p id="foto-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            <p id="foto-error" role="alert" class="mt-2 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                         @enderror
                     </div>
-                    <p wire:loading wire:target="foto" class="text-xs text-blue-600">Mengunggah foto…</p>
+                    <p wire:loading wire:target="foto" class="font-mono text-xs text-[#4A151C]">Mengunggah foto…</p>
                 </div>
                 <div class="mt-7 flex justify-end">
                     <button
                         type="submit"
                         wire:loading.attr="disabled"
                         wire:target="updateProfile,foto"
-                        class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition bg-blue-600 text-white shadow-sm shadow-blue-200 hover:bg-blue-700"
+                        class="inline-flex items-center justify-center gap-2 rounded-md bg-[#4A151C] px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-xs transition hover:bg-[#3C0F15] cursor-pointer"
                     >
                         <span wire:loading.remove wire:target="updateProfile">Simpan Profil</span>
                         <span wire:loading wire:target="updateProfile">Menyimpan…</span>
                     </button>
                 </div>
             </form>
-            <form wire:submit="updatePassword" class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
-                <div class="flex items-center gap-3">
-                    <span class="rounded-xl bg-slate-50 p-2 text-blue-600">
-                        <i data-lucide="lock-keyhole" aria-hidden="true" class="h-5 w-5 shrink-0"></i>
+
+            <form wire:submit="updatePassword" class="rounded-lg border border-[#DCD5C8] bg-white p-6 sm:p-8 shadow-xs">
+                <div class="flex items-center gap-3 border-b border-[#ECE7DF] pb-5">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-md bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C]">
+                        <i data-lucide="lock-keyhole" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
                     </span>
                     <div>
-                        <h2 class="font-display text-lg font-bold">Ubah Password</h2>
-                        <p class="mt-1 text-xs text-slate-500">Gunakan password yang kuat untuk melindungi akun.</p>
+                        <span class="font-mono text-[10px] font-bold tracking-wider uppercase text-[#C59B27]">KEAMANAN KREDENSIAL</span>
+                        <h2 class="mt-0.5 font-serif text-xl font-bold text-[#1C1819]">Ubah Password</h2>
+                        <p class="mt-0.5 text-xs text-[#7A6B6E]">Gunakan kombinasi sandi yang kuat untuk menjaga privasi berkas Anda.</p>
                     </div>
                 </div>
                 <div class="mt-7 space-y-5">
                     <div>
-                        <label for="current_password" class="mb-2 block text-sm font-semibold text-slate-700">Password saat ini</label>
+                        <label for="current_password" class="mb-2 block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1819]">Password Saat Ini</label>
                         <input
                             type="password"
                             id="current_password"
@@ -170,14 +178,14 @@
                             wire:model="current_password"
                             autocomplete="current-password"
                             required
-                            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50"
+                            class="w-full rounded-md border border-[#DCD5C8] bg-white px-4 py-2.5 font-mono text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:ring-1 focus:ring-[#4A151C]"
                         >
                         @error('current_password')
-                            <p id="current_password-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            <p id="current_password-error" role="alert" class="mt-2 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                         @enderror
                     </div>
                     <div>
-                        <label for="password" class="mb-2 block text-sm font-semibold text-slate-700">Password baru</label>
+                        <label for="password" class="mb-2 block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1819]">Password Baru</label>
                         <input
                             type="password"
                             id="password"
@@ -189,15 +197,15 @@
                             wire:model="password"
                             autocomplete="new-password"
                             required
-                            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50"
+                            class="w-full rounded-md border border-[#DCD5C8] bg-white px-4 py-2.5 font-mono text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:ring-1 focus:ring-[#4A151C]"
                         >
-                        <p id="password-help" class="mt-2 text-xs leading-relaxed text-slate-500">Minimal 8 karakter, mengandung huruf dan angka.</p>
+                        <p id="password-help" class="mt-2 font-mono text-[11px] leading-relaxed text-[#7A6B6E]">Minimal 8 karakter, wajib mengandung kombinasi huruf dan angka.</p>
                         @error('password')
-                            <p id="password-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            <p id="password-error" role="alert" class="mt-2 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                         @enderror
                     </div>
                     <div>
-                        <label for="password_confirmation" class="mb-2 block text-sm font-semibold text-slate-700">Konfirmasi password baru</label>
+                        <label for="password_confirmation" class="mb-2 block font-mono text-xs font-bold uppercase tracking-wider text-[#1C1819]">Konfirmasi Password Baru</label>
                         <input
                             type="password"
                             id="password_confirmation"
@@ -209,10 +217,10 @@
                             wire:model="password_confirmation"
                             autocomplete="new-password"
                             required
-                            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-50 read-only:bg-slate-50"
+                            class="w-full rounded-md border border-[#DCD5C8] bg-white px-4 py-2.5 font-mono text-xs text-[#1C1819] outline-none transition focus:border-[#4A151C] focus:ring-1 focus:ring-[#4A151C]"
                         >
                         @error('password_confirmation')
-                            <p id="password_confirmation-error" role="alert" class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            <p id="password_confirmation-error" role="alert" class="mt-2 font-mono text-xs text-[#85222E]">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -220,7 +228,7 @@
                     <button
                         type="submit"
                         wire:loading.attr="disabled"
-                        class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition bg-blue-600 text-white shadow-sm shadow-blue-200 hover:bg-blue-700"
+                        class="inline-flex items-center justify-center gap-2 rounded-md bg-[#4A151C] px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-xs transition hover:bg-[#3C0F15] cursor-pointer"
                     >
                         <span wire:loading.remove wire:target="updatePassword">Ubah Password</span>
                         <span wire:loading wire:target="updatePassword">Menyimpan…</span>
