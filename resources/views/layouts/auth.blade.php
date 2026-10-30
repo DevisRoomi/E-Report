@@ -37,27 +37,35 @@
     </head>
     <body class="bg-[#F7F4F2] font-sans text-[#1C1819] antialiased">
         <div class="grid min-h-screen lg:grid-cols-12">
-            {{-- Left editorial oxblood pane --}}
-            <aside class="relative hidden bg-[#3C0F15] p-12 text-[#FAF7F5] lg:col-span-5 lg:flex lg:flex-col lg:justify-between xl:p-16 border-r border-[#310A10]">
-                <div>
+            {{-- Left editorial oxblood pane with dramatic civic infrastructure photography --}}
+            <aside class="relative hidden bg-[#3C0F15] p-12 text-[#FAF7F5] lg:col-span-5 lg:flex lg:flex-col lg:justify-between xl:p-16 border-r border-[#310A10] overflow-hidden">
+                {{-- High contrast gritty civil infrastructure backdrop image --}}
+                <div class="absolute inset-0 z-0">
+                    <img
+                        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
+                        alt="Infrastruktur dan konstruksi sipil"
+                        class="h-full w-full object-cover opacity-25 filter saturate-50 contrast-125"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#3C0F15] via-[#3C0F15]/95 to-[#3C0F15]/80"></div>
+                </div>
+
+                <div class="relative z-10">
                     <a href="{{ route('home') }}" wire:navigate class="inline-flex items-center gap-3">
-                        <span class="flex h-10 w-10 items-center justify-center rounded-md bg-white text-[#3C0F15] shadow-xs">
-                            <i data-lucide="shield" aria-hidden="true" class="h-5 w-5 stroke-[2.5]"></i>
-                        </span>
+                        <x-civic-logo size="md" variant="white" />
                         <div>
-                            <span class="font-display text-2xl tracking-wider text-white">E-REPORT</span>
+                            <span class="font-display text-2xl tracking-wider text-white">E-REPORT<span class="text-[#C59B27]">.</span></span>
                             <span class="block font-mono text-[9px] uppercase tracking-widest text-[#E0D0D2]">Layanan Sipil</span>
                         </div>
                     </a>
                 </div>
 
-                <div class="my-auto py-12">
-                    <p class="font-mono text-[11px] font-bold tracking-[.2em] uppercase text-[#C59B27]">DOKUMENTASI & ADVOKASI</p>
+                <div class="relative z-10 my-auto py-12">
+                    <p class="font-mono text-[11px] font-bold tracking-[.2em] uppercase text-[#C59B27]">DOKUMENTASI & ADVOKASI FASILITAS</p>
                     <h1 class="mt-4 font-serif text-4xl sm:text-5xl font-bold leading-[1.1] text-white">
                         Kawal laporan fasilitas warga dengan tertib dan transparan.
                     </h1>
                     <p class="mt-6 text-sm leading-relaxed text-[#D6C4C6]">
-                        Setiap aduan dicatat dalam register resmi bernomor identifikasi tunggal, dipantau tahapannya, dan dapat diverifikasi langsung oleh pelapor.
+                        Setiap aduan dicatat dalam register resmi bernomor identifikasi tunggal, diverifikasi dengan bukti visual lapangan, dan dipantau hingga rampung.
                     </p>
 
                     <div class="mt-8 space-y-3 border-t border-[#521820] pt-6 font-mono text-xs text-[#E0D0D2]">
@@ -67,16 +75,16 @@
                         </div>
                         <div class="flex items-center gap-3">
                             <span class="flex h-5 w-5 items-center justify-center rounded-sm bg-[#521820] text-[#C59B27] font-bold text-[10px]">02</span>
-                            <span>Audit status berkala dari petugas teknis</span>
+                            <span>Audit status berkala dari dinas teknis</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <span class="flex h-5 w-5 items-center justify-center rounded-sm bg-[#521820] text-[#C59B27] font-bold text-[10px]">03</span>
-                            <span>Arsip tindak lanjut dapat diunduh transparan</span>
+                            <span>Arsip tindak lanjut dapat dipantau terbuka</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between border-t border-[#4A151C] pt-6 font-mono text-[10px] text-[#B99A9F]">
+                <div class="relative z-10 flex items-center justify-between border-t border-[#4A151C] pt-6 font-mono text-[10px] text-[#B99A9F]">
                     <span>REPUBLIK INDONESIA</span>
                     <span>STANDAR PELAYANAN PUBLIK</span>
                 </div>

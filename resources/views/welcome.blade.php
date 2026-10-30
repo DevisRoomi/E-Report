@@ -65,9 +65,7 @@
         <header :class="scrolled ? 'backdrop-blur-md bg-[#F7F4EE]/90 shadow-xs border-[#DCD5C8]' : 'bg-[#F7F4EE] border-[#DCD5C8]/60'" class="sticky top-0 z-40 border-b transition-all duration-200">
             <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3.5 lg:px-10" aria-label="Navigasi beranda">
                 <a href="{{ route('home') }}" class="group inline-flex items-center gap-3">
-                    <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#4A151C] text-white shadow-xs transition duration-200 group-hover:scale-105 group-hover:bg-[#3C0F15] group-active:scale-95">
-                        <i data-lucide="shield-check" aria-hidden="true" class="h-5 w-5 stroke-[2.2]"></i>
-                    </span>
+                    <x-civic-logo size="md" />
                     <div>
                         <span class="font-display text-2xl tracking-wider text-[#1C1819]">E-REPORT<span class="text-[#C59B27]">.</span></span>
                         <span class="block font-mono text-[9px] uppercase tracking-widest text-[#7A6B6E]">Layanan Sipil</span>
@@ -77,6 +75,7 @@
                 <div class="hidden items-center gap-8 font-mono text-xs font-semibold tracking-wider uppercase text-[#554749] md:flex">
                     <a href="#prosedur" class="hover:text-[#4A151C] transition hover:-translate-y-0.5 active:translate-y-0">Alur Pengaduan</a>
                     <a href="#kategori" class="hover:text-[#4A151C] transition hover:-translate-y-0.5 active:translate-y-0">Kategori</a>
+                    <a href="#galeri" class="hover:text-[#4A151C] transition hover:-translate-y-0.5 active:translate-y-0">Dokumentasi Lapangan</a>
                     <a href="#komitmen" class="hover:text-[#4A151C] transition hover:-translate-y-0.5 active:translate-y-0">Standar Mutu</a>
                 </div>
 
@@ -155,7 +154,7 @@
                             </div>
                         </div>
 
-                        {{-- Interactive Specimen Card with Alpine Switcher (Anti-Stiff Boxes, Soft Curvature) --}}
+                        {{-- Interactive Specimen Card with Real Photo Documentation & Alpine Switcher --}}
                         <div class="lg:col-span-5" x-data="{
                             activeTab: 0,
                             items: [
@@ -166,8 +165,10 @@
                                     kategori: 'Penerangan Jalan (PJU)',
                                     judul: 'Perbaikan Lampu Jalan Simpang Melati Padam 3 Malam',
                                     lokasi: 'Jl. Melati RT 04 / RW 02, Sektor Barat',
-                                    tindakLanjut: 'Teknisi Dinas ESDM dijadwalkan ganti trafo hari ini',
-                                    waktu: '30 Okt 2026, 09:15 WIB'
+                                    tindakLanjut: 'Teknisi Dinas ESDM penggantian trafo & kabel induk',
+                                    waktu: '30 Okt 2026, 09:15 WIB',
+                                    photo: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=700&q=80',
+                                    petugas: 'Unit Reaksi Cepat ESDM 03'
                                 },
                                 {
                                     id: 'REP-2026-079',
@@ -176,8 +177,10 @@
                                     kategori: 'Infrastruktur Jalan',
                                     judul: 'Penambalan Lubang Aspal Amblas Dekat Jembatan',
                                     lokasi: 'Jl. Pemuda No. 12, Kelurahan Sukamaju',
-                                    tindakLanjut: 'Pekerjaan perataan aspal hotmix telah rampung',
-                                    waktu: '28 Okt 2026, 14:20 WIB'
+                                    tindakLanjut: 'Pekerjaan perataan aspal hotmix telah rampung 100%',
+                                    waktu: '28 Okt 2026, 14:20 WIB',
+                                    photo: 'https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?auto=format&fit=crop&w=700&q=80',
+                                    petugas: 'Dinas Bina Marga & Tata Ruang'
                                 },
                                 {
                                     id: 'REP-2026-091',
@@ -186,17 +189,17 @@
                                     kategori: 'Kebersihan & Drainase',
                                     judul: 'Saluran Drainase Tersumbat Endapan Sampah Liar',
                                     lokasi: 'Gang Mawar 3 RT 01, RW 05',
-                                    tindakLanjut: 'Antrean tim pembersihan lingkungan akhir pekan',
-                                    waktu: '30 Okt 2026, 11:05 WIB'
+                                    tindakLanjut: 'Antrean tim pembersihan & ekskavasi parit akhir pekan',
+                                    waktu: '30 Okt 2026, 11:05 WIB',
+                                    photo: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80',
+                                    petugas: 'Satgas Dinas Lingkungan Hidup'
                                 }
                             ]
                         }">
-                            <div class="rounded-3xl border border-[#DCD5C8] bg-white/90 backdrop-blur-sm p-6 sm:p-7 shadow-[0_8px_30px_rgb(74,21,28,0.06)] transition-all duration-200 hover:shadow-[0_12px_40px_rgb(74,21,28,0.09)]">
+                            <div class="rounded-3xl border border-[#DCD5C8] bg-white/95 backdrop-blur-sm p-6 sm:p-7 shadow-[0_8px_30px_rgb(74,21,28,0.06)] transition-all duration-200 hover:shadow-[0_12px_40px_rgb(74,21,28,0.12)]">
                                 <div class="flex items-center justify-between border-b border-[#ECE7DF] pb-4">
                                     <div class="flex items-center gap-2">
-                                        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C]">
-                                            <i data-lucide="file-text" class="h-3.5 w-3.5"></i>
-                                        </span>
+                                        <x-civic-logo size="sm" />
                                         <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#1C1819]" x-text="items[activeTab].id"></span>
                                     </div>
                                     <span class="rounded-full border px-3 py-0.5 font-mono text-[10px] font-bold tracking-wider transition-colors duration-150" :class="items[activeTab].badgeClass" x-text="items[activeTab].badge"></span>
@@ -230,27 +233,36 @@
                                     </button>
                                 </div>
 
-                                <div class="mt-5 space-y-4">
-                                    <div class="rounded-2xl bg-[#FAF7F5] border border-[#ECE7DF] p-4 sm:p-5 transition-all">
+                                {{-- Photographic Evidence Thumbnail with Verified Watermark --}}
+                                <div class="mt-4 relative overflow-hidden rounded-2xl border border-[#ECE7DF] h-40 bg-[#1C1819] shadow-inner group">
+                                    <img :src="items[activeTab].photo" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 filter contrast-110" alt="Foto dokumentasi fisik lapangan">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-[#1C1819]/90 via-[#1C1819]/25 to-transparent"></div>
+                                    <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 rounded-md bg-[#3C0F15]/90 backdrop-blur-xs px-2.5 py-1 font-mono text-[9px] font-bold tracking-wider text-[#FAF7F5] border border-[#C59B27]/40">
+                                        <span class="h-1.5 w-1.5 rounded-full bg-[#C59B27] animate-pulse"></span>
+                                        DOKUMENTASI OTENTIK
+                                    </div>
+                                    <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between font-mono text-[10px] text-white">
+                                        <span class="text-[#D6C4C6] truncate" x-text="items[activeTab].petugas"></span>
+                                        <span class="text-[#C59B27] font-semibold tracking-wider shrink-0">&bull; TERVERIFIKASI</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 space-y-3.5">
+                                    <div class="rounded-2xl bg-[#FAF7F5] border border-[#ECE7DF] p-4 transition-all">
                                         <p class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#C59B27]" x-text="items[activeTab].kategori"></p>
-                                        <p class="mt-1.5 font-serif text-lg font-bold text-[#1C1819] leading-snug" x-text="items[activeTab].judul"></p>
-                                        <p class="mt-2 text-xs leading-relaxed text-[#554749]" x-text="items[activeTab].tindakLanjut"></p>
+                                        <p class="mt-1 font-serif text-base font-bold text-[#1C1819] leading-snug" x-text="items[activeTab].judul"></p>
+                                        <p class="mt-1.5 text-xs leading-relaxed text-[#554749]" x-text="items[activeTab].tindakLanjut"></p>
                                     </div>
 
-                                    <div class="space-y-2.5 font-mono text-xs">
+                                    <div class="space-y-2 font-mono text-xs">
                                         <div class="flex items-center justify-between border-b border-[#ECE7DF] pb-2 text-[11px]">
-                                            <span class="text-[#7A6B6E]">Lokasi Kejadian</span>
+                                            <span class="text-[#7A6B6E]">Lokasi</span>
                                             <span class="font-semibold text-[#1C1819] text-right" x-text="items[activeTab].lokasi"></span>
                                         </div>
                                         <div class="flex items-center justify-between text-[11px]">
-                                            <span class="text-[#7A6B6E]">Waktu Dicatat</span>
+                                            <span class="text-[#7A6B6E]">Waktu Registrasi</span>
                                             <span class="font-semibold text-[#1C1819]" x-text="items[activeTab].waktu"></span>
                                         </div>
-                                    </div>
-
-                                    <div class="rounded-xl border border-[#DCD5C8]/80 bg-[#FAF7F2] p-3 text-center font-mono text-[11px] text-[#554749]">
-                                        <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500 mr-1.5"></span>
-                                        Setiap laporan ditindaklanjuti dengan bukti lapangan.
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +306,7 @@
                 </div>
             </section>
 
-            {{-- Categories Section: Tactile Lift Cards --}}
+            {{-- Categories Section: Photographic Editorial Tactile Cards --}}
             <section id="kategori" class="border-b border-[#DCD5C8]/80 bg-[#F7F4EE] py-18">
                 <div class="mx-auto max-w-7xl px-6 lg:px-10">
                     <div class="max-w-2xl">
@@ -303,33 +315,231 @@
                     </div>
 
                     <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        <div class="group rounded-2xl border border-[#DCD5C8] bg-white p-6 shadow-2xs transition-all duration-200 hover:-translate-y-1.5 hover:shadow-md hover:border-[#4A151C]/40 cursor-default">
-                            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C] transition duration-200 group-hover:bg-[#4A151C] group-hover:text-white">
-                                <i data-lucide="wrench" class="h-5 w-5"></i>
+                        {{-- Card 1 --}}
+                        <div class="group relative overflow-hidden rounded-2xl border border-[#DCD5C8] bg-white p-6 shadow-2xs transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#4A151C] cursor-default flex flex-col justify-between">
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C] transition duration-200 group-hover:bg-[#4A151C] group-hover:text-white">
+                                        <i data-lucide="wrench" class="h-5 w-5"></i>
+                                    </div>
+                                    <span class="font-mono text-[10px] font-bold text-[#7A6B6E] tracking-widest uppercase">KAT-01</span>
+                                </div>
+                                <h3 class="mt-4 font-serif text-base font-bold text-[#1C1819] group-hover:text-[#4A151C] transition-colors">Infrastruktur Jalan</h3>
+                                <p class="mt-2 text-xs leading-relaxed text-[#7A6B6E]">Jalan berlubang, trotoar amblas, pembatas ambruk, dan fasilitas pedestrian.</p>
                             </div>
-                            <h3 class="mt-4 font-serif text-base font-bold text-[#1C1819]">Infrastruktur Jalan</h3>
-                            <p class="mt-2 text-xs leading-relaxed text-[#7A6B6E]">Jalan berlubang, trotoar rusak, pembatas jalan ambruk, dan fasilitas pedestrian umum.</p>
+                            <div class="mt-5 pt-3 border-t border-[#ECE7DF] flex items-center justify-between font-mono text-[10px] text-[#554749]">
+                                <span>Target Respon</span>
+                                <span class="font-bold text-[#4A151C]">&le; 24 Jam</span>
+                            </div>
                         </div>
-                        <div class="group rounded-2xl border border-[#DCD5C8] bg-white p-6 shadow-2xs transition-all duration-200 hover:-translate-y-1.5 hover:shadow-md hover:border-[#4A151C]/40 cursor-default">
-                            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C] transition duration-200 group-hover:bg-[#4A151C] group-hover:text-white">
-                                <i data-lucide="zap" class="h-5 w-5"></i>
+
+                        {{-- Card 2 --}}
+                        <div class="group relative overflow-hidden rounded-2xl border border-[#DCD5C8] bg-white p-6 shadow-2xs transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#4A151C] cursor-default flex flex-col justify-between">
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C] transition duration-200 group-hover:bg-[#4A151C] group-hover:text-white">
+                                        <i data-lucide="zap" class="h-5 w-5"></i>
+                                    </div>
+                                    <span class="font-mono text-[10px] font-bold text-[#7A6B6E] tracking-widest uppercase">KAT-02</span>
+                                </div>
+                                <h3 class="mt-4 font-serif text-base font-bold text-[#1C1819] group-hover:text-[#4A151C] transition-colors">Penerangan & Kelistrikan</h3>
+                                <p class="mt-2 text-xs leading-relaxed text-[#7A6B6E]">PJU padam malam hari, kabel instalasi membahayakan, trafo, tiang listrik miring.</p>
                             </div>
-                            <h3 class="mt-4 font-serif text-base font-bold text-[#1C1819]">Penerangan & Kelistrikan</h3>
-                            <p class="mt-2 text-xs leading-relaxed text-[#7A6B6E]">PJU padam malam hari, kabel instalasi menjuntai, gardu bermasalah, atau tiang miring.</p>
+                            <div class="mt-5 pt-3 border-t border-[#ECE7DF] flex items-center justify-between font-mono text-[10px] text-[#554749]">
+                                <span>Target Respon</span>
+                                <span class="font-bold text-[#4A151C]">&le; 12 Jam</span>
+                            </div>
                         </div>
-                        <div class="group rounded-2xl border border-[#DCD5C8] bg-white p-6 shadow-2xs transition-all duration-200 hover:-translate-y-1.5 hover:shadow-md hover:border-[#4A151C]/40 cursor-default">
-                            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C] transition duration-200 group-hover:bg-[#4A151C] group-hover:text-white">
-                                <i data-lucide="trash-2" class="h-5 w-5"></i>
+
+                        {{-- Card 3 --}}
+                        <div class="group relative overflow-hidden rounded-2xl border border-[#DCD5C8] bg-white p-6 shadow-2xs transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#4A151C] cursor-default flex flex-col justify-between">
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C] transition duration-200 group-hover:bg-[#4A151C] group-hover:text-white">
+                                        <i data-lucide="trash-2" class="h-5 w-5"></i>
+                                    </div>
+                                    <span class="font-mono text-[10px] font-bold text-[#7A6B6E] tracking-widest uppercase">KAT-03</span>
+                                </div>
+                                <h3 class="mt-4 font-serif text-base font-bold text-[#1C1819] group-hover:text-[#4A151C] transition-colors">Kebersihan & Sampah</h3>
+                                <p class="mt-2 text-xs leading-relaxed text-[#7A6B6E]">Tumpukan sampah liar, drainase mampet, sedimentasi got saluran meluap.</p>
                             </div>
-                            <h3 class="mt-4 font-serif text-base font-bold text-[#1C1819]">Kebersihan & Sampah</h3>
-                            <p class="mt-2 text-xs leading-relaxed text-[#7A6B6E]">Tumpukan sampah liar, drainase mampet, sedimentasi parit, atau saluran air meluap.</p>
+                            <div class="mt-5 pt-3 border-t border-[#ECE7DF] flex items-center justify-between font-mono text-[10px] text-[#554749]">
+                                <span>Target Respon</span>
+                                <span class="font-bold text-[#4A151C]">&le; 24 Jam</span>
+                            </div>
                         </div>
-                        <div class="group rounded-2xl border border-[#DCD5C8] bg-white p-6 shadow-2xs transition-all duration-200 hover:-translate-y-1.5 hover:shadow-md hover:border-[#4A151C]/40 cursor-default">
-                            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C] transition duration-200 group-hover:bg-[#4A151C] group-hover:text-white">
-                                <i data-lucide="shield-alert" class="h-5 w-5"></i>
+
+                        {{-- Card 4 --}}
+                        <div class="group relative overflow-hidden rounded-2xl border border-[#DCD5C8] bg-white p-6 shadow-2xs transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#4A151C] cursor-default flex flex-col justify-between">
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FAF7F5] border border-[#ECE7DF] text-[#4A151C] transition duration-200 group-hover:bg-[#4A151C] group-hover:text-white">
+                                        <i data-lucide="shield-alert" class="h-5 w-5"></i>
+                                    </div>
+                                    <span class="font-mono text-[10px] font-bold text-[#7A6B6E] tracking-widest uppercase">KAT-04</span>
+                                </div>
+                                <h3 class="mt-4 font-serif text-base font-bold text-[#1C1819] group-hover:text-[#4A151C] transition-colors">Ketertiban Umum</h3>
+                                <p class="mt-2 text-xs leading-relaxed text-[#7A6B6E]">Fasilitas umum rusak terhalang, rambu lalulintas roboh, dan keamanan sipil.</p>
                             </div>
-                            <h3 class="mt-4 font-serif text-base font-bold text-[#1C1819]">Ketertiban Umum</h3>
-                            <p class="mt-2 text-xs leading-relaxed text-[#7A6B6E]">Gangguan fasilitas bersama, parkir liar menghalangi jalur evakuasi, dan keamanan sipil.</p>
+                            <div class="mt-5 pt-3 border-t border-[#ECE7DF] flex items-center justify-between font-mono text-[10px] text-[#554749]">
+                                <span>Target Respon</span>
+                                <span class="font-bold text-[#4A151C]">&le; 48 Jam</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {{-- Dramatic Photographic Documentary Proof Dispatch Section (Josjis, Sangar, Gagah) --}}
+            <section id="galeri" class="border-b border-[#310A10] bg-[#1C1819] text-[#FAF7F5] py-20 relative overflow-hidden">
+                {{-- Ambient glow accents --}}
+                <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-[#4A151C]/40 blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-[#C59B27]/10 blur-3xl pointer-events-none"></div>
+
+                <div class="relative mx-auto max-w-7xl px-6 lg:px-10">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#352F31] pb-8">
+                        <div>
+                            <div class="inline-flex items-center gap-2 rounded-full border border-[#C59B27]/40 bg-[#3C0F15] px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase text-[#FAF7F5]">
+                                <span class="h-1.5 w-1.5 rounded-full bg-[#C59B27] animate-pulse"></span>
+                                ARSIP PENANGANAN FISIK
+                            </div>
+                            <h2 class="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+                                Dokumentasi Eksekusi Lapangan.
+                            </h2>
+                            <p class="mt-3 text-sm leading-relaxed text-[#B99A9F] max-w-2xl">
+                                Rekam jejak intervensi teknis nyata di lapangan. Dari perataan jalan aspal uap malam, perbaikan tiang instalasi, hingga rekayasa saluran parit terbuka.
+                            </p>
+                        </div>
+                        <div class="font-mono text-xs text-[#B99A9F] shrink-0 text-left md:text-right">
+                            <span class="block text-white font-bold text-base font-display">100% TERVERIFIKASI</span>
+                            <span>INSPEKSI VISUAL BERKOORDINAT</span>
+                        </div>
+                    </div>
+
+                    {{-- 4 Cinematic Photographic Dispatch Grid --}}
+                    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                        {{-- Dispatch 1 --}}
+                        <div class="group relative overflow-hidden rounded-2xl border border-[#352F31] bg-[#252022] transition-all duration-300 hover:-translate-y-2 hover:border-[#C59B27]/70 hover:shadow-2xl">
+                            <div class="relative h-64 overflow-hidden">
+                                <img
+                                    src="https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1000&q=80"
+                                    alt="Pekerjaan aspal hotmix dan konstruksi jalan malam"
+                                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 filter contrast-125 saturate-75 brightness-90"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#1C1819] via-[#1C1819]/30 to-transparent"></div>
+                                <div class="absolute top-3 left-3">
+                                    <span class="rounded-md bg-[#1D5E38]/90 backdrop-blur-xs px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-white border border-emerald-400/40">
+                                        SELESAI FISIK
+                                    </span>
+                                </div>
+                                <div class="absolute bottom-3 left-4 right-4">
+                                    <span class="font-mono text-[10px] text-[#C59B27] font-semibold tracking-widest block">SEKTOR BINA MARGA</span>
+                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Penambalan Aspal Hotmix Malam Hari</h3>
+                                </div>
+                            </div>
+                            <div class="p-4 border-t border-[#352F31]/60 font-mono text-xs text-[#A8989A] space-y-1.5">
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span>Titik Lokasi</span>
+                                    <span class="font-semibold text-white">Jl. Pemuda Km 4.2</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span>Pelaksana</span>
+                                    <span class="text-[#D6C4C6]">Unit Respon Cepat 02</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Dispatch 2 --}}
+                        <div class="group relative overflow-hidden rounded-2xl border border-[#352F31] bg-[#252022] transition-all duration-300 hover:-translate-y-2 hover:border-[#C59B27]/70 hover:shadow-2xl">
+                            <div class="relative h-64 overflow-hidden">
+                                <img
+                                    src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80"
+                                    alt="Teknisi instalasi kelistrikan tiang PJU"
+                                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 filter contrast-125 saturate-75 brightness-90"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#1C1819] via-[#1C1819]/30 to-transparent"></div>
+                                <div class="absolute top-3 left-3">
+                                    <span class="rounded-md bg-[#8C6D0F]/90 backdrop-blur-xs px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-white border border-[#E8D49B]/40">
+                                        REKONSTRUKSI
+                                    </span>
+                                </div>
+                                <div class="absolute bottom-3 left-4 right-4">
+                                    <span class="font-mono text-[10px] text-[#C59B27] font-semibold tracking-widest block">INSTALASI ESDM</span>
+                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Penggantian Trafo Jaringan PJU</h3>
+                                </div>
+                            </div>
+                            <div class="p-4 border-t border-[#352F31]/60 font-mono text-xs text-[#A8989A] space-y-1.5">
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span>Titik Lokasi</span>
+                                    <span class="font-semibold text-white">Simpang Melati Timur</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span>Pelaksana</span>
+                                    <span class="text-[#D6C4C6]">Regu Teknisi Kelistrikan</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Dispatch 3 --}}
+                        <div class="group relative overflow-hidden rounded-2xl border border-[#352F31] bg-[#252022] transition-all duration-300 hover:-translate-y-2 hover:border-[#C59B27]/70 hover:shadow-2xl">
+                            <div class="relative h-64 overflow-hidden">
+                                <img
+                                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80"
+                                    alt="Ekskavator alat berat proyek normalisasi drainase"
+                                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 filter contrast-125 saturate-75 brightness-90"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#1C1819] via-[#1C1819]/30 to-transparent"></div>
+                                <div class="absolute top-3 left-3">
+                                    <span class="rounded-md bg-[#4A151C]/90 backdrop-blur-xs px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-white border border-rose-400/40">
+                                        OPERASIONAL
+                                    </span>
+                                </div>
+                                <div class="absolute bottom-3 left-4 right-4">
+                                    <span class="font-mono text-[10px] text-[#C59B27] font-semibold tracking-widest block">SUMBER DAYA AIR</span>
+                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Pengerukan Sedimen Drainase Utama</h3>
+                                </div>
+                            </div>
+                            <div class="p-4 border-t border-[#352F31]/60 font-mono text-xs text-[#A8989A] space-y-1.5">
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span>Titik Lokasi</span>
+                                    <span class="font-semibold text-white">Bantaran Kali Baru</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span>Pelaksana</span>
+                                    <span class="text-[#D6C4C6]">Satgas Alat Berat Dinas</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Dispatch 4 --}}
+                        <div class="group relative overflow-hidden rounded-2xl border border-[#352F31] bg-[#252022] transition-all duration-300 hover:-translate-y-2 hover:border-[#C59B27]/70 hover:shadow-2xl">
+                            <div class="relative h-64 overflow-hidden">
+                                <img
+                                    src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80"
+                                    alt="Inspeksi jalur jembatan dan pembatas jalan"
+                                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 filter contrast-125 saturate-75 brightness-90"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#1C1819] via-[#1C1819]/30 to-transparent"></div>
+                                <div class="absolute top-3 left-3">
+                                    <span class="rounded-md bg-[#1D5E38]/90 backdrop-blur-xs px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-white border border-emerald-400/40">
+                                        INSPEKSI AMAN
+                                    </span>
+                                </div>
+                                <div class="absolute bottom-3 left-4 right-4">
+                                    <span class="font-mono text-[10px] text-[#C59B27] font-semibold tracking-widest block">AUDIT SIPIL</span>
+                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Inspeksi Rambu & Batas Pengaman</h3>
+                                </div>
+                            </div>
+                            <div class="p-4 border-t border-[#352F31]/60 font-mono text-xs text-[#A8989A] space-y-1.5">
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span>Titik Lokasi</span>
+                                    <span class="font-semibold text-white">Jalur Lingkar Luar Km 11</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span>Pelaksana</span>
+                                    <span class="text-[#D6C4C6]">Inspektur Keselamatan</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -362,16 +572,20 @@
             </section>
         </main>
 
-        <footer class="border-t border-[#DCD5C8]/80 bg-[#F7F4EE] py-8">
-            <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 font-mono text-[11px] text-[#7A6B6E] lg:px-10">
+        <footer class="border-t border-[#DCD5C8]/80 bg-[#F7F4EE] py-10">
+            <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-6 font-mono text-[11px] text-[#7A6B6E] lg:px-10">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-[#1C1819]">E-REPORT</span>
-                    <span>&bull;</span>
-                    <span>SISTEM INFORMASI LAYANAN PENGADUAN SIPIL</span>
+                    <x-civic-logo size="sm" />
+                    <div>
+                        <span class="font-bold text-[#1C1819] tracking-wider">E-REPORT.</span>
+                        <span class="block text-[9px] text-[#7A6B6E] uppercase">SISTEM INFORMASI PENGADUAN FASILITAS SIPIL</span>
+                    </div>
                 </div>
-                <div class="flex items-center gap-4">
+                <div class="flex flex-wrap items-center gap-6">
                     <span>&copy; {{ date('Y') }} Hak Cipta Dilindungi</span>
                     <a href="#prosedur" class="hover:text-[#4A151C] underline underline-offset-2 transition">Panduan Prosedur</a>
+                    <a href="#galeri" class="hover:text-[#4A151C] underline underline-offset-2 transition">Dokumentasi Lapangan</a>
+                    <span class="text-[#4A151C] font-semibold">&bull; STANDAR SP4N-LAPOR!</span>
                 </div>
             </div>
         </footer>

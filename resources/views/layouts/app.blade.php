@@ -44,9 +44,7 @@
         <aside :inert="!menuOpen && !desktop" :class="menuOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[#310A10] bg-[#3C0F15] text-[#FAF7F5] transition-transform duration-200 lg:translate-x-0">
             <div class="flex h-20 shrink-0 items-center justify-between border-b border-[#4A151C] px-6">
                 <a href="{{ route('home') }}" class="inline-flex items-center gap-3">
-                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-[#3C0F15] shadow-xs">
-                        <i data-lucide="shield-check" aria-hidden="true" class="h-4 w-4 stroke-[2.5]"></i>
-                    </span>
+                    <x-civic-logo size="sm" variant="white" />
                     <div>
                         <span class="font-display text-2xl tracking-wider text-white">E-REPORT<span class="text-[#C59B27]">.</span></span>
                         <span class="block font-mono text-[9px] uppercase tracking-widest text-[#E0D0D2]">Layanan Sipil</span>
