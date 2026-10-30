@@ -159,15 +159,15 @@
                             activeTab: 0,
                             items: [
                                 {
-                                    id: 'REP-2026-084',
-                                    badge: 'PROSES',
-                                    badgeClass: 'bg-[#FAF4E5] text-[#8C6D0F] border-[#E8D49B]',
+                                    id: 'REP-2026-042',
+                                    badge: 'DIPROSES',
+                                    badgeClass: 'bg-[#FDF9F0] text-[#8C6D0F] border-[#E8D49B]',
                                     kategori: 'Penerangan Jalan (PJU)',
                                     judul: 'Perbaikan Lampu Jalan Simpang Melati Padam 3 Malam',
                                     lokasi: 'Jl. Melati RT 04 / RW 02, Sektor Barat',
                                     tindakLanjut: 'Teknisi Dinas ESDM penggantian trafo & kabel induk',
                                     waktu: '30 Okt 2026, 09:15 WIB',
-                                    photo: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=700&q=80',
+                                    photo: '{{ asset("images/gallery/teknisi_pju_opt.jpg") }}',
                                     petugas: 'Unit Reaksi Cepat ESDM 03'
                                 },
                                 {
@@ -179,7 +179,7 @@
                                     lokasi: 'Jl. Pemuda No. 12, Kelurahan Sukamaju',
                                     tindakLanjut: 'Pekerjaan perataan aspal hotmix telah rampung 100%',
                                     waktu: '28 Okt 2026, 14:20 WIB',
-                                    photo: 'https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?auto=format&fit=crop&w=700&q=80',
+                                    photo: '{{ asset("images/gallery/jalan_aspal_opt.jpg") }}',
                                     petugas: 'Dinas Bina Marga & Tata Ruang'
                                 },
                                 {
@@ -191,7 +191,7 @@
                                     lokasi: 'Gang Mawar 3 RT 01, RW 05',
                                     tindakLanjut: 'Antrean tim pembersihan & ekskavasi parit akhir pekan',
                                     waktu: '30 Okt 2026, 11:05 WIB',
-                                    photo: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80',
+                                    photo: '{{ asset("images/gallery/ekskavator_kerja_opt.jpg") }}',
                                     petugas: 'Satgas Dinas Lingkungan Hidup'
                                 }
                             ]
@@ -422,8 +422,8 @@
                         <div class="group relative overflow-hidden rounded-2xl border border-[#352F31] bg-[#252022] transition-all duration-300 hover:-translate-y-2 hover:border-[#C59B27]/70 hover:shadow-2xl">
                             <div class="relative h-64 overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1000&q=80"
-                                    alt="Pekerjaan aspal hotmix dan konstruksi jalan malam"
+                                    src="{{ asset('images/gallery/jalan_aspal_opt.jpg') }}"
+                                    alt="Pekerjaan konstruksi jalan dan mesin paver aspal hotmix"
                                     class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 filter contrast-125 saturate-75 brightness-90"
                                 >
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#1C1819] via-[#1C1819]/30 to-transparent"></div>
@@ -434,7 +434,7 @@
                                 </div>
                                 <div class="absolute bottom-3 left-4 right-4">
                                     <span class="font-mono text-[10px] text-[#C59B27] font-semibold tracking-widest block">SEKTOR BINA MARGA</span>
-                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Penambalan Aspal Hotmix Malam Hari</h3>
+                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Penambalan & Gelar Aspal Hotmix</h3>
                                 </div>
                             </div>
                             <div class="p-4 border-t border-[#352F31]/60 font-mono text-xs text-[#A8989A] space-y-1.5">
@@ -453,8 +453,8 @@
                         <div class="group relative overflow-hidden rounded-2xl border border-[#352F31] bg-[#252022] transition-all duration-300 hover:-translate-y-2 hover:border-[#C59B27]/70 hover:shadow-2xl">
                             <div class="relative h-64 overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80"
-                                    alt="Teknisi instalasi kelistrikan tiang PJU"
+                                    src="{{ asset('images/gallery/teknisi_pju_opt.jpg') }}"
+                                    alt="Teknisi instalasi kelistrikan mobil derek tiang PJU"
                                     class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 filter contrast-125 saturate-75 brightness-90"
                                 >
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#1C1819] via-[#1C1819]/30 to-transparent"></div>
@@ -475,7 +475,7 @@
                                 </div>
                                 <div class="flex items-center justify-between text-[11px]">
                                     <span>Pelaksana</span>
-                                    <span class="text-[#D6C4C6]">Regu Teknisi Kelistrikan</span>
+                                    <span class="text-[#D6C4C6]">Regu Teknisi Derek Altec</span>
                                 </div>
                             </div>
                         </div>
@@ -484,8 +484,8 @@
                         <div class="group relative overflow-hidden rounded-2xl border border-[#352F31] bg-[#252022] transition-all duration-300 hover:-translate-y-2 hover:border-[#C59B27]/70 hover:shadow-2xl">
                             <div class="relative h-64 overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80"
-                                    alt="Ekskavator alat berat proyek normalisasi drainase"
+                                    src="{{ asset('images/gallery/ekskavator_kerja_opt.jpg') }}"
+                                    alt="Ekskavator alat berat galian parit dan drainase lingkungan"
                                     class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 filter contrast-125 saturate-75 brightness-90"
                                 >
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#1C1819] via-[#1C1819]/30 to-transparent"></div>
@@ -496,13 +496,13 @@
                                 </div>
                                 <div class="absolute bottom-3 left-4 right-4">
                                     <span class="font-mono text-[10px] text-[#C59B27] font-semibold tracking-widest block">SUMBER DAYA AIR</span>
-                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Pengerukan Sedimen Drainase Utama</h3>
+                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Ekskavasi & Pengerukan Parit</h3>
                                 </div>
                             </div>
                             <div class="p-4 border-t border-[#352F31]/60 font-mono text-xs text-[#A8989A] space-y-1.5">
                                 <div class="flex items-center justify-between text-[11px]">
                                     <span>Titik Lokasi</span>
-                                    <span class="font-semibold text-white">Bantaran Kali Baru</span>
+                                    <span class="font-semibold text-white">Bantaran Saluran Pembuang</span>
                                 </div>
                                 <div class="flex items-center justify-between text-[11px]">
                                     <span>Pelaksana</span>
@@ -515,8 +515,8 @@
                         <div class="group relative overflow-hidden rounded-2xl border border-[#352F31] bg-[#252022] transition-all duration-300 hover:-translate-y-2 hover:border-[#C59B27]/70 hover:shadow-2xl">
                             <div class="relative h-64 overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80"
-                                    alt="Inspeksi jalur jembatan dan pembatas jalan"
+                                    src="{{ asset('images/gallery/guardrail_rambu_opt.jpg') }}"
+                                    alt="Pemasangan pengaman guardrail baja jalan tol"
                                     class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 filter contrast-125 saturate-75 brightness-90"
                                 >
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#1C1819] via-[#1C1819]/30 to-transparent"></div>
@@ -527,17 +527,17 @@
                                 </div>
                                 <div class="absolute bottom-3 left-4 right-4">
                                     <span class="font-mono text-[10px] text-[#C59B27] font-semibold tracking-widest block">AUDIT SIPIL</span>
-                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Inspeksi Rambu & Batas Pengaman</h3>
+                                    <h3 class="font-serif text-lg font-bold text-white leading-snug mt-0.5">Pemasangan Guardrail Baja</h3>
                                 </div>
                             </div>
                             <div class="p-4 border-t border-[#352F31]/60 font-mono text-xs text-[#A8989A] space-y-1.5">
                                 <div class="flex items-center justify-between text-[11px]">
                                     <span>Titik Lokasi</span>
-                                    <span class="font-semibold text-white">Jalur Lingkar Luar Km 11</span>
+                                    <span class="font-semibold text-white">Jalur Tol Lingkar Luar Km 11</span>
                                 </div>
                                 <div class="flex items-center justify-between text-[11px]">
                                     <span>Pelaksana</span>
-                                    <span class="text-[#D6C4C6]">Inspektur Keselamatan</span>
+                                    <span class="text-[#D6C4C6]">Inspektur Keselamatan Bina Marga</span>
                                 </div>
                             </div>
                         </div>

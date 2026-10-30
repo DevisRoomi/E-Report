@@ -42,7 +42,7 @@
                 {{-- High contrast gritty civil infrastructure backdrop image --}}
                 <div class="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
+                        src="{{ asset('images/gallery/paving_machines_opt.jpg') }}"
                         alt="Infrastruktur dan konstruksi sipil"
                         class="h-full w-full object-cover opacity-25 filter saturate-50 contrast-125"
                     >
