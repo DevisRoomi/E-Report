@@ -35,19 +35,20 @@
         <style>[x-cloak] { display: none !important; }</style>
         @livewireStyles
     </head>
-    <body class="bg-[#F7F4F2] font-sans text-[#1C1819] antialiased" x-data="{ menuOpen: false, desktop: window.innerWidth >= 1024 }" @resize.window="desktop = window.innerWidth >= 1024" @keydown.escape.window="menuOpen = false">
-        <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-[#4A151C] focus:text-white focus:p-3 focus:font-mono focus:text-xs">Langsung ke konten</a>
+    <body class="bg-[#F7F4EE] font-sans text-[#1C1819] antialiased" x-data="{ menuOpen: false, desktop: window.innerWidth >= 1024, scrollProgress: 0 }" @scroll.window="const h = document.documentElement.scrollHeight - window.innerHeight; scrollProgress = h > 0 ? (window.scrollY / h) * 100 : 0" @resize.window="desktop = window.innerWidth >= 1024" @keydown.escape.window="menuOpen = false">
+        <div class="fixed top-0 left-0 h-1 bg-gradient-to-r from-[#C59B27] via-[#85222E] to-[#4A151C] z-50 transition-all duration-75" :style="`width: ${scrollProgress}%`"></div>
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-xl focus:bg-[#4A151C] focus:text-white focus:p-3 focus:font-mono focus:text-xs">Langsung ke konten</a>
         <div x-show="menuOpen" x-cloak @click="menuOpen = false" class="fixed inset-0 z-30 bg-[#1C1819]/60 backdrop-blur-xs lg:hidden"></div>
 
         {{-- Sidebar: deep oxblood / wine aesthetic --}}
         <aside :inert="!menuOpen && !desktop" :class="menuOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[#310A10] bg-[#3C0F15] text-[#FAF7F5] transition-transform duration-200 lg:translate-x-0">
             <div class="flex h-20 shrink-0 items-center justify-between border-b border-[#4A151C] px-6">
                 <a href="{{ route('home') }}" class="inline-flex items-center gap-3">
-                    <span class="flex h-9 w-9 items-center justify-center rounded-md bg-white text-[#3C0F15] shadow-xs">
-                        <i data-lucide="shield" aria-hidden="true" class="h-4 w-4 stroke-[2.5]"></i>
+                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-[#3C0F15] shadow-xs">
+                        <i data-lucide="shield-check" aria-hidden="true" class="h-4 w-4 stroke-[2.5]"></i>
                     </span>
                     <div>
-                        <span class="font-display text-2xl tracking-wider text-white">E-REPORT</span>
+                        <span class="font-display text-2xl tracking-wider text-white">E-REPORT<span class="text-[#C59B27]">.</span></span>
                         <span class="block font-mono text-[9px] uppercase tracking-widest text-[#E0D0D2]">Layanan Sipil</span>
                     </div>
                 </a>
@@ -64,9 +65,9 @@
                             href="{{ route('admin.dashboard') }}"
                             aria-current="{{ request()->routeIs('admin.dashboard') ? 'page' : 'false' }}"
                             @class([
-                                'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-xs font-semibold tracking-wide transition',
+                                'flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-semibold tracking-wide transition-all duration-150 active:scale-95 cursor-pointer',
                                 'bg-white text-[#3C0F15] shadow-xs' => request()->routeIs('admin.dashboard'),
-                                'text-[#E0D0D2] hover:bg-[#4A151C] hover:text-white' => ! request()->routeIs('admin.dashboard'),
+                                'text-[#E0D0D2] hover:bg-[#4A151C] hover:text-white hover:translate-x-0.5' => ! request()->routeIs('admin.dashboard'),
                             ])
                         >
                             <i data-lucide="layout-dashboard" aria-hidden="true" class="h-4 w-4 shrink-0"></i>
@@ -76,7 +77,7 @@
                             href="{{ route('admin.laporan.index') }}"
                             aria-current="{{ request()->routeIs('admin.laporan.*') ? 'page' : 'false' }}"
                             @class([
-                                'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-xs font-semibold tracking-wide transition',
+                                'flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-semibold tracking-wide transition-all duration-150 active:scale-95 cursor-pointer',
                                 'bg-white text-[#3C0F15] shadow-xs' => request()->routeIs('admin.laporan.*'),
                                 'text-[#E0D0D2] hover:bg-[#4A151C] hover:text-white' => ! request()->routeIs('admin.laporan.*'),
                             ])
